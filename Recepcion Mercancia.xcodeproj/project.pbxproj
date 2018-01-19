@@ -7,14 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4363916CE309A3B71A4F82AF /* Pods_Recepcion_Mercancia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69842A6C5D23BD57D09152C1 /* Pods_Recepcion_Mercancia.framework */; };
+		FA3F771F200CD0C500A118F7 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3F771E200CD0C500A118F7 /* SwiftyJSON.framework */; };
+		FA3F7721200CE40E00A118F7 /* tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F7720200CE40D00A118F7 /* tools.swift */; };
+		FA3F7723200D322400A118F7 /* EscogerProveedor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F7722200D322400A118F7 /* EscogerProveedor.swift */; };
 		FA78679820079CBA00BB4D12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA78679720079CBA00BB4D12 /* AppDelegate.swift */; };
 		FA78679A20079CBA00BB4D12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA78679920079CBA00BB4D12 /* ViewController.swift */; };
 		FA78679D20079CBA00BB4D12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA78679B20079CBA00BB4D12 /* Main.storyboard */; };
 		FA78679F20079CBA00BB4D12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA78679E20079CBA00BB4D12 /* Assets.xcassets */; };
 		FA7867A220079CBA00BB4D12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA7867A020079CBA00BB4D12 /* LaunchScreen.storyboard */; };
+		FA7867AA20079DEA00BB4D12 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7867A920079DEA00BB4D12 /* Alamofire.framework */; };
+		FADDF6722010D6C800D046C8 /* ArticuloController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF6712010D6C800D046C8 /* ArticuloController.swift */; };
+		FADDF67C2010F78300D046C8 /* BarcodeScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FADDF67B2010F78300D046C8 /* BarcodeScanner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		69842A6C5D23BD57D09152C1 /* Pods_Recepcion_Mercancia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recepcion_Mercancia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C0A0631D552C166D30CA10E /* Pods-Recepcion Mercancia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recepcion Mercancia.release.xcconfig"; path = "Pods/Target Support Files/Pods-Recepcion Mercancia/Pods-Recepcion Mercancia.release.xcconfig"; sourceTree = "<group>"; };
+		C6D8C7CFCCF490CA7106266C /* Pods-Recepcion Mercancia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recepcion Mercancia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Recepcion Mercancia/Pods-Recepcion Mercancia.debug.xcconfig"; sourceTree = "<group>"; };
+		FA3F771E200CD0C500A118F7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		FA3F7720200CE40D00A118F7 /* tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tools.swift; sourceTree = "<group>"; };
+		FA3F7722200D322400A118F7 /* EscogerProveedor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EscogerProveedor.swift; path = ../EscogerProveedor.swift; sourceTree = "<group>"; };
 		FA78679420079CBA00BB4D12 /* Recepcion Mercancia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recepcion Mercancia.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA78679720079CBA00BB4D12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA78679920079CBA00BB4D12 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +35,9 @@
 		FA78679E20079CBA00BB4D12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA7867A120079CBA00BB4D12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA7867A320079CBA00BB4D12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA7867A920079DEA00BB4D12 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		FADDF6712010D6C800D046C8 /* ArticuloController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticuloController.swift; sourceTree = "<group>"; };
+		FADDF67B2010F78300D046C8 /* BarcodeScanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BarcodeScanner.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/BarcodeScanner/BarcodeScanner.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +45,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADDF67C2010F78300D046C8 /* BarcodeScanner.framework in Frameworks */,
+				FA3F771F200CD0C500A118F7 /* SwiftyJSON.framework in Frameworks */,
+				FA7867AA20079DEA00BB4D12 /* Alamofire.framework in Frameworks */,
+				4363916CE309A3B71A4F82AF /* Pods_Recepcion_Mercancia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17C9319178D32A085A319FB9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FADDF67B2010F78300D046C8 /* BarcodeScanner.framework */,
+				FA3F771E200CD0C500A118F7 /* SwiftyJSON.framework */,
+				FA7867A920079DEA00BB4D12 /* Alamofire.framework */,
+				69842A6C5D23BD57D09152C1 /* Pods_Recepcion_Mercancia.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		30217191D3B3F12F90B636F1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C6D8C7CFCCF490CA7106266C /* Pods-Recepcion Mercancia.debug.xcconfig */,
+				9C0A0631D552C166D30CA10E /* Pods-Recepcion Mercancia.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FA78678B20079CBA00BB4D12 = {
 			isa = PBXGroup;
 			children = (
 				FA78679620079CBA00BB4D12 /* Recepcion Mercancia */,
 				FA78679520079CBA00BB4D12 /* Products */,
+				30217191D3B3F12F90B636F1 /* Pods */,
+				17C9319178D32A085A319FB9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +96,25 @@
 		FA78679620079CBA00BB4D12 /* Recepcion Mercancia */ = {
 			isa = PBXGroup;
 			children = (
-				FA78679720079CBA00BB4D12 /* AppDelegate.swift */,
+				FADDF6702010D68200D046C8 /* controllers */,
 				FA78679920079CBA00BB4D12 /* ViewController.swift */,
+				FA78679720079CBA00BB4D12 /* AppDelegate.swift */,
 				FA78679B20079CBA00BB4D12 /* Main.storyboard */,
 				FA78679E20079CBA00BB4D12 /* Assets.xcassets */,
 				FA7867A020079CBA00BB4D12 /* LaunchScreen.storyboard */,
 				FA7867A320079CBA00BB4D12 /* Info.plist */,
+				FA3F7720200CE40D00A118F7 /* tools.swift */,
 			);
 			path = "Recepcion Mercancia";
+			sourceTree = "<group>";
+		};
+		FADDF6702010D68200D046C8 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA3F7722200D322400A118F7 /* EscogerProveedor.swift */,
+				FADDF6712010D6C800D046C8 /* ArticuloController.swift */,
+			);
+			name = controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +124,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA7867A620079CBA00BB4D12 /* Build configuration list for PBXNativeTarget "Recepcion Mercancia" */;
 			buildPhases = (
+				1BF7F30D7439D14FAD21D4CE /* [CP] Check Pods Manifest.lock */,
 				FA78679020079CBA00BB4D12 /* Sources */,
 				FA78679120079CBA00BB4D12 /* Frameworks */,
 				FA78679220079CBA00BB4D12 /* Resources */,
+				28094F10EB94C9C4F4BC06C1 /* [CP] Embed Pods Frameworks */,
+				1A54AF0F5D77087C3382F232 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,13 +188,74 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1A54AF0F5D77087C3382F232 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Recepcion Mercancia/Pods-Recepcion Mercancia-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1BF7F30D7439D14FAD21D4CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Recepcion Mercancia-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		28094F10EB94C9C4F4BC06C1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Recepcion Mercancia/Pods-Recepcion Mercancia-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BarcodeScanner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Recepcion Mercancia/Pods-Recepcion Mercancia-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FA78679020079CBA00BB4D12 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA3F7721200CE40E00A118F7 /* tools.swift in Sources */,
 				FA78679A20079CBA00BB4D12 /* ViewController.swift in Sources */,
+				FADDF6722010D6C800D046C8 /* ArticuloController.swift in Sources */,
 				FA78679820079CBA00BB4D12 /* AppDelegate.swift in Sources */,
+				FA3F7723200D322400A118F7 /* EscogerProveedor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,10 +376,17 @@
 		};
 		FA7867A720079CBA00BB4D12 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6D8C7CFCCF490CA7106266C /* Pods-Recepcion Mercancia.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3FWNGW7RR4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/BarcodeScanner",
+				);
 				INFOPLIST_FILE = "Recepcion Mercancia/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paseo78.Recepcion-Mercancia";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -272,10 +396,17 @@
 		};
 		FA7867A820079CBA00BB4D12 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C0A0631D552C166D30CA10E /* Pods-Recepcion Mercancia.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 3FWNGW7RR4;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/BarcodeScanner",
+				);
 				INFOPLIST_FILE = "Recepcion Mercancia/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.paseo78.Recepcion-Mercancia";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -302,6 +433,7 @@
 				FA7867A820079CBA00BB4D12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

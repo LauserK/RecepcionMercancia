@@ -1,0 +1,6 @@
+framework module Pods_Recepcion_Mercancia {
+  umbrella header "Pods-Recepcion Mercancia-umbrella.h"
+
+  export *
+  module * { export * }
+}
