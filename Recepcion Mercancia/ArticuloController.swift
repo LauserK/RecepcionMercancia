@@ -19,7 +19,9 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet weak var unidadMedidaPicker: UIPickerView!
     @IBOutlet weak var btnCantidadMas: UIButton!
     @IBOutlet weak var btnCantidadMenos: UIButton!
+    @IBOutlet weak var btnEditarCantidad: UIButton!
     @IBOutlet weak var titulo2Label: UILabel!
+    @IBOutlet weak var unidadLabel: UILabel!
     
     var proveedor = [
         "razon_social":"",
@@ -34,11 +36,19 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     var articulo = [
         "nombre": "",
         "codigo": "",
-        "auto":""
+        "auto":"",
+        "cantidad_recibida":"",
+        "cantidad_factura":""
     ]
-    var articulos = [[""]]
+    
+    var cantidad = "0"
+    
+    var articulos = [["":""]]
     
     var unidadMedidaData = [["",""]]
+    
+    // 1 = Ingresar recibido // 2 = ingresar lo que especifica la factura
+    var tipoPantalla = 1
     
     // Instancia del visor de codigo
     private let controller = BarcodeScannerController()
@@ -50,6 +60,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
             self.cantidadLabel.text = String(cantidad - 1)
         }
     }
+    
     @IBAction func cantidadMas(_ sender: Any) {
         let cantidad: Int = Int(self.cantidadLabel.text!)!
         self.cantidadLabel.text = String(cantidad + 1)
@@ -64,8 +75,14 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         buscarProducto(code: self.codigoInput.text!)
     }
     
+    @IBAction func editarButtonAction(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "moveToEditCant", sender: self)
+        
+    }
+    
     func buscarProducto(code: String){
-        ToolsPaseo().consultarDB(id: "open", sql: "SELECT productos.auto, productos.nombre, productos.codigo, productos_medida.auto AS auto_medida FROM productos INNER JOIN productos_medida ON productos.auto_empaque_compra = productos_medida.auto WHERE productos.codigo = '\(code)'"){ data in
+        ToolsPaseo().consultarDB(id: "open", sql: "SELECT productos.auto, productos.nombre, productos.codigo, productos_medida.auto AS auto_medida, productos.contenido_compras FROM productos INNER JOIN productos_medida ON productos.auto_empaque_compra = productos_medida.auto WHERE productos.codigo = '\(code)'"){ data in
             
             if (data["data"][0][1] == nil){
                 self.articuloLabel.text = "¡ARTÍCULO NO EXISTE!"
@@ -75,6 +92,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 self.articulo["codigo"] = data["data"][0][2].string
                 self.articulo["auto"] = data["data"][0][0].string
                 self.articulo["auto_medida"] = data["data"][0][3].string
+                self.articulo["contenido_compras"] = "\(data["data"][0][4])"
                 
                 // mostrar controles de cantidades y medidas
                 self.cantidadLabel.isHidden = false
@@ -82,8 +100,10 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 self.btnCantidadMas.isHidden = false
                 self.btnCantidadMenos.isHidden = false
                 self.titulo2Label.isHidden = false
+                self.btnEditarCantidad.isHidden = false
+                self.unidadLabel.isHidden = false
                 
-                // Mostrar nombre en el label
+                // Mostramos los datos
                 self.articuloLabel.text = self.articulo["nombre"]
                 
                 // Cambiar selecion del picker al indicado
@@ -93,13 +113,11 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                         let nombre = data[1]
                         let decimales = data[2]
                         
-                        if (decimales == "2"){
-                            self.cantidadLabel.text = "\(0.0)"
+                        if (self.cantidad != "0"){
+                            self.cantidadLabel.text = "\(self.cantidad)"
                         }
                         
-                        if (decimales == "3"){
-                            self.cantidadLabel.text = "\(0.000)"
-                        }
+                        self.unidadLabel.text = "\(nombre): \(self.articulo["contenido_compras"]!) unds"
                         
                         self.unidadMedidaPicker.selectRow(c, inComponent: 0, animated: false)
                     }
@@ -134,13 +152,14 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         self.proveedorLabel.text = self.proveedor["razon_social"]
         self.usuarioLabel.text = self.usuario["nombre"]
         
-        // ocultar controles de cantidades y medidas
+        // ocultar controles de cantidades y medidas o mostrar datos
         self.cantidadLabel.isHidden = true
         self.unidadMedidaPicker.isHidden = true
         self.btnCantidadMas.isHidden = true
         self.btnCantidadMenos.isHidden = true
         self.titulo2Label.isHidden = true
-        
+        self.btnEditarCantidad.isHidden = true
+        self.unidadLabel.isHidden = true
         
         // textos español
         BarcodeScanner.Title.text = NSLocalizedString("ESCANER", comment: "")
@@ -164,9 +183,86 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 }
                 self.unidadMedidaData.append(medida)
             }
+            //Actualizamos el picker
             self.unidadMedidaPicker?.reloadAllComponents()
+            
+            // Si vienes de editar la cantidad
+            if (self.articulo["codigo"] != ""){
+                self.buscarProducto(code: self.articulo["codigo"]!)
+            }
         }
     }
+    
+    func irSiguiente(){
+        // Agregar el articulo al array de recibidos
+        self.articulos.append(self.articulo)
+        
+        // create the alert
+        let alert = UIAlertController(title: "¡ARTICULO AGREGADO EXITOSAMENTE!", message: "¿Existen más artículos por recibir?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "SI", style: UIAlertActionStyle.default, handler: { action in
+            
+            // Agregar siguiente articulo
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ArticuloController") as? ArticuloController
+            {
+                vc.usuario = self.usuario
+                vc.articulos = self.articulos
+                vc.proveedor = self.proveedor
+                self.present(vc, animated: true, completion: nil)
+            }
+            
+        }))
+        alert.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler: { action in
+            
+            self.performSegue(withIdentifier: "irTotalizar", sender: self)
+        }))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    
+    }
+    
+    @IBAction func handleNext(_ sender: Any) {
+        if(self.articulo["nombre"] != "" && self.cantidadLabel.text != "0" && self.tipoPantalla == 1){
+            
+            self.articulo["cantidad_recibida"] = self.cantidadLabel.text!
+            
+            // create the alert
+            let alert = UIAlertController(title: self.articuloLabel.text!, message: "¿La cantidad recibida es la misma que especifica la factura?", preferredStyle: UIAlertControllerStyle.alert)
+
+            
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "SI", style: UIAlertActionStyle.default, handler: { action in
+                // Preguntar si hay mas articulos o ir a lista de recibidos
+                self.irSiguiente()
+                
+                
+            }))
+            alert.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler: { action in
+            
+                // Muestra pantalla para indicar el
+                self.titulo2Label.text = "INDICAR CANTIDAD QUE ESPECIFICA LA FACTURA"
+                self.tipoPantalla = 2
+                self.cantidadLabel.text = "0"
+            }))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        if (self.articulo["nombre"] != "" && self.cantidadLabel.text != "0" && self.tipoPantalla == 2) {
+            
+            self.articulo["cantidad_factura"] = self.cantidadLabel.text!
+            self.irSiguiente()
+        
+        }
+        
+        
+        
+    }
+    
     
     // PICKER VIEW
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -189,6 +285,26 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
+    }
+    
+    // Move to teclado
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "moveToEditCant" {
+            if let destination = segue.destination as? TecladoController {
+                destination.usuario = self.usuario
+                destination.proveedor = self.proveedor
+                destination.articulo = self.articulo
+                destination.articulos = self.articulos
+            }
+        }
+        
+        if segue.identifier == "irTotalizar" {
+            if let destination = segue.destination as? TotalizarController {
+                destination.usuario = self.usuario
+                destination.proveedor = self.proveedor
+                destination.articulos = self.articulos
+            }
+        }
     }
 }
 

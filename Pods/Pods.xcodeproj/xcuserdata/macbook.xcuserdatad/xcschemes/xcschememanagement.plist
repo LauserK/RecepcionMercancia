@@ -19,6 +19,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FontAwesome.swift-FontAwesome.swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FontAwesome.swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Recepcion Mercancia.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,17 +47,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3267ADBE5AC578C8F6EBA3A976C13E9A</key>
+		<key>4058F734E440F744DF16C4F0588D11BF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>59971F0C4A19D8CEEFE6F269E779FE1F</key>
+		<key>6991F49AED797519343B1F4591001691</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF2352D0A25031B27614C39561DD9E22</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD11672B6619C297B6AEE3DFB8213C59</key>
 		<dict>
 			<key>primary</key>
 			<true/>

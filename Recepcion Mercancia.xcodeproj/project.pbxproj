@@ -17,6 +17,9 @@
 		FA78679F20079CBA00BB4D12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA78679E20079CBA00BB4D12 /* Assets.xcassets */; };
 		FA7867A220079CBA00BB4D12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA7867A020079CBA00BB4D12 /* LaunchScreen.storyboard */; };
 		FA7867AA20079DEA00BB4D12 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7867A920079DEA00BB4D12 /* Alamofire.framework */; };
+		FAAE9D592013E88A00E11710 /* TecladoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D582013E88A00E11710 /* TecladoController.swift */; };
+		FAAE9D5B201A7F8900E11710 /* TotalizarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D5A201A7F8800E11710 /* TotalizarController.swift */; };
+		FAAE9D5D201A856A00E11710 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D5C201A856A00E11710 /* ArticleCell.swift */; };
 		FADDF6722010D6C800D046C8 /* ArticuloController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF6712010D6C800D046C8 /* ArticuloController.swift */; };
 		FADDF67C2010F78300D046C8 /* BarcodeScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FADDF67B2010F78300D046C8 /* BarcodeScanner.framework */; };
 /* End PBXBuildFile section */
@@ -36,6 +39,9 @@
 		FA7867A120079CBA00BB4D12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA7867A320079CBA00BB4D12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA7867A920079DEA00BB4D12 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		FAAE9D582013E88A00E11710 /* TecladoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TecladoController.swift; sourceTree = "<group>"; };
+		FAAE9D5A201A7F8800E11710 /* TotalizarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalizarController.swift; sourceTree = "<group>"; };
+		FAAE9D5C201A856A00E11710 /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		FADDF6712010D6C800D046C8 /* ArticuloController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticuloController.swift; sourceTree = "<group>"; };
 		FADDF67B2010F78300D046C8 /* BarcodeScanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BarcodeScanner.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/BarcodeScanner/BarcodeScanner.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +110,7 @@
 				FA7867A020079CBA00BB4D12 /* LaunchScreen.storyboard */,
 				FA7867A320079CBA00BB4D12 /* Info.plist */,
 				FA3F7720200CE40D00A118F7 /* tools.swift */,
+				FAAE9D5C201A856A00E11710 /* ArticleCell.swift */,
 			);
 			path = "Recepcion Mercancia";
 			sourceTree = "<group>";
@@ -113,6 +120,8 @@
 			children = (
 				FA3F7722200D322400A118F7 /* EscogerProveedor.swift */,
 				FADDF6712010D6C800D046C8 /* ArticuloController.swift */,
+				FAAE9D582013E88A00E11710 /* TecladoController.swift */,
+				FAAE9D5A201A7F8800E11710 /* TotalizarController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -231,12 +240,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Recepcion Mercancia/Pods-Recepcion Mercancia-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework",
+				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BarcodeScanner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,9 +262,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAAE9D5D201A856A00E11710 /* ArticleCell.swift in Sources */,
 				FA3F7721200CE40E00A118F7 /* tools.swift in Sources */,
 				FA78679A20079CBA00BB4D12 /* ViewController.swift in Sources */,
+				FAAE9D592013E88A00E11710 /* TecladoController.swift in Sources */,
 				FADDF6722010D6C800D046C8 /* ArticuloController.swift in Sources */,
+				FAAE9D5B201A7F8900E11710 /* TotalizarController.swift in Sources */,
 				FA78679820079CBA00BB4D12 /* AppDelegate.swift in Sources */,
 				FA3F7723200D322400A118F7 /* EscogerProveedor.swift in Sources */,
 			);

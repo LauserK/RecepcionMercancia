@@ -9,4 +9,5 @@ target 'Recepcion Mercancia' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'BarcodeScanner', '2.0.0'
+  pod 'FontAwesome.swift'
 end

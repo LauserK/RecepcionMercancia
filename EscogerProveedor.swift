@@ -98,7 +98,6 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
         "codigo": "",
         "auto":""
     ]
-    @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var queryProveedorInput: UITextField!
     
@@ -142,7 +141,6 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.viewDidLoad()
         
         // Mostramos el nombre de usuario
-        self.userLabel.text = self.usuario["nombre"]
         
         self.queryProveedorInput.text = self.searchQueryText
         
@@ -159,6 +157,7 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let newCell = tableView.dequeueReusableCell(withIdentifier: "proveedorItemCell") as! ProveedorCell
         newCell.setName(name: "\(self.proveedores[indexPath.row][1])")
+        newCell.setRIF(rif: "\(self.proveedores[indexPath.row][2])")
         return newCell
     }
     
@@ -198,15 +197,22 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
 class ProveedorCell: UITableViewCell {
     
     @IBOutlet weak var proveedorName: UILabel!
+    @IBOutlet weak var proveedorRIF: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         proveedorName.text = ""
+        proveedorRIF.text  = ""
     }
     
     public func setName(name:String){
         self.proveedorName.text = name
     
+    }
+    
+    public func setRIF(rif:String){
+        self.proveedorRIF.text = rif
+        
     }
     
     
