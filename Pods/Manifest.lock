@@ -1,21 +1,21 @@
 PODS:
   - Alamofire (4.5.1)
   - BarcodeScanner (2.0.0)
-  - FontAwesome.swift (1.3.0)
+  - FontAwesome.swift (1.0.0)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire
   - BarcodeScanner (= 2.0.0)
-  - FontAwesome.swift
+  - FontAwesome.swift (= 1.0.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   BarcodeScanner: 266ab4b479d407b74bc4b473fa5020b4523ad9e3
-  FontAwesome.swift: 0be828ecac1e2762526c8b8330591dbae9556ec1
+  FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: adb1a3b76d16ddc6700125df8546044e8b6d0689
+PODFILE CHECKSUM: 270ef4b474668e6e54d714cb7e8bb34688ff23e0
 
 COCOAPODS: 1.3.1

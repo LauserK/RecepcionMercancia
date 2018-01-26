@@ -20,6 +20,7 @@
 		FAAE9D592013E88A00E11710 /* TecladoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D582013E88A00E11710 /* TecladoController.swift */; };
 		FAAE9D5B201A7F8900E11710 /* TotalizarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D5A201A7F8800E11710 /* TotalizarController.swift */; };
 		FAAE9D5D201A856A00E11710 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D5C201A856A00E11710 /* ArticleCell.swift */; };
+		FAAE9D61201B564C00E11710 /* FontAwesome_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAAE9D60201B564C00E11710 /* FontAwesome_swift.framework */; };
 		FADDF6722010D6C800D046C8 /* ArticuloController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF6712010D6C800D046C8 /* ArticuloController.swift */; };
 		FADDF67C2010F78300D046C8 /* BarcodeScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FADDF67B2010F78300D046C8 /* BarcodeScanner.framework */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,8 @@
 		FAAE9D582013E88A00E11710 /* TecladoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TecladoController.swift; sourceTree = "<group>"; };
 		FAAE9D5A201A7F8800E11710 /* TotalizarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalizarController.swift; sourceTree = "<group>"; };
 		FAAE9D5C201A856A00E11710 /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
+		FAAE9D5E201B556F00E11710 /* FontAwesome_swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome_swift.framework; path = "Pods/../build/Debug-iphoneos/FontAwesome.swift/FontAwesome_swift.framework"; sourceTree = "<group>"; };
+		FAAE9D60201B564C00E11710 /* FontAwesome_swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome_swift.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/FontAwesome.swift/FontAwesome_swift.framework"; sourceTree = "<group>"; };
 		FADDF6712010D6C800D046C8 /* ArticuloController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticuloController.swift; sourceTree = "<group>"; };
 		FADDF67B2010F78300D046C8 /* BarcodeScanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BarcodeScanner.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/BarcodeScanner/BarcodeScanner.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAAE9D61201B564C00E11710 /* FontAwesome_swift.framework in Frameworks */,
 				FADDF67C2010F78300D046C8 /* BarcodeScanner.framework in Frameworks */,
 				FA3F771F200CD0C500A118F7 /* SwiftyJSON.framework in Frameworks */,
 				FA7867AA20079DEA00BB4D12 /* Alamofire.framework in Frameworks */,
@@ -64,6 +68,8 @@
 		17C9319178D32A085A319FB9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FAAE9D60201B564C00E11710 /* FontAwesome_swift.framework */,
+				FAAE9D5E201B556F00E11710 /* FontAwesome_swift.framework */,
 				FADDF67B2010F78300D046C8 /* BarcodeScanner.framework */,
 				FA3F771E200CD0C500A118F7 /* SwiftyJSON.framework */,
 				FA7867A920079DEA00BB4D12 /* Alamofire.framework */,
@@ -398,6 +404,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/BarcodeScanner",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FontAwesome.swift",
 				);
 				INFOPLIST_FILE = "Recepcion Mercancia/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -418,6 +425,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/BarcodeScanner",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/FontAwesome.swift",
 				);
 				INFOPLIST_FILE = "Recepcion Mercancia/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;

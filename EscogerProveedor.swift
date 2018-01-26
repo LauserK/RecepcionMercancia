@@ -107,7 +107,7 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func buscarProveedor(){
-        var sql = "SELECT auto, razon_social, ci_rif FROM proveedores WHERE estatus = 'Activo'"
+        var sql = "SELECT auto, razon_social, ci_rif, dir_fiscal FROM proveedores WHERE estatus = 'Activo'"
         
         var filtro = ""
         if (self.searchQueryText != ""){
@@ -166,6 +166,7 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.proveedor["auto"] = self.proveedores[indexPath.row][0]
         self.proveedor["razon_social"] = self.proveedores[indexPath.row][1]
         self.proveedor["ci_rif"] = self.proveedores[indexPath.row][2]
+        self.proveedor["dir_fiscal"] = self.proveedores[indexPath.row][3]
     }
     
     @IBAction func buscarProveedorButton(_ sender: Any) {
