@@ -406,6 +406,9 @@
                                 <state key="normal" title="VOLVER">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="irVolver:" destination="zxZ-88-Krg" eventType="touchUpInside" id="Ae5-1C-ICZ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLA-3J-7ub">
                                 <rect key="frame" x="90" y="255" width="141" height="30"/>
@@ -579,7 +582,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="81" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RCp-7A-QMy">
-                                <rect key="frame" x="16" y="205" width="288" height="288"/>
+                                <rect key="frame" x="16" y="211" width="288" height="282"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -618,20 +621,11 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eh6-o0-I5A">
-                                                    <rect key="frame" x="228" y="2" width="51" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" title="-">
-                                                        <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="cantidadLabel" destination="zCg-8X-Tqy" id="AM4-On-Bsh"/>
                                             <outlet property="codigoLabel" destination="7Wc-94-aif" id="1v2-ib-JUY"/>
-                                            <outlet property="editButton" destination="eh6-o0-I5A" id="Xrv-dG-Iyh"/>
                                             <outlet property="nombreLabel" destination="sVr-6X-HOI" id="lql-Tb-Bn6"/>
                                         </connections>
                                     </tableViewCell>
@@ -641,6 +635,19 @@
                                     <outlet property="delegate" destination="SbK-Cm-URG" id="Wwm-iZ-2fv"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FgS-VF-nks">
+                                <rect key="frame" x="244" y="175" width="60" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.63137254899999995" green="0.51764705879999995" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <state key="normal" title="EDITAR">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="editarArticulo:" destination="SbK-Cm-URG" eventType="touchUpInside" id="d6r-yW-15M"/>
+                                    <action selector="searchButtonAction:" destination="zxZ-88-Krg" eventType="touchUpInside" id="pTk-DJ-BnA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.81960784313725488" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                     </view>

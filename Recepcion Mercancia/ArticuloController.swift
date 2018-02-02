@@ -82,7 +82,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func buscarProducto(code: String){
-        ToolsPaseo().consultarDB(id: "open", sql: "SELECT productos.auto, productos.nombre, productos.codigo, productos_medida.auto AS auto_medida, productos.contenido_compras FROM productos INNER JOIN productos_medida ON productos.auto_empaque_compra = productos_medida.auto WHERE productos.codigo = '\(code)'"){ data in
+        ToolsPaseo().consultarDB(id: "open", sql: "SELECT productos.auto, productos.nombre, productos.codigo, productos_medida.auto AS auto_medida, productos.contenido_compras, productos.auto_departamento, productos.auto_grupo, productos.auto_subgrupo FROM productos INNER JOIN productos_medida ON productos.auto_empaque_compra = productos_medida.auto WHERE productos.codigo = '\(code)'"){ data in
             
             if (data["data"][0][1] == nil){
                 self.articuloLabel.text = "¡ARTÍCULO NO EXISTE!"
@@ -93,6 +93,9 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 self.articulo["auto"] = data["data"][0][0].string
                 self.articulo["auto_medida"] = data["data"][0][3].string
                 self.articulo["contenido_compras"] = "\(data["data"][0][4])"
+                self.articulo["auto_departamento"] = "\(data["data"][0][5])"
+                self.articulo["auto_grupo"] = "\(data["data"][0][6])"
+                self.articulo["auto_subgrupo"] = "\(data["data"][0][7])"
                 
                 // mostrar controles de cantidades y medidas
                 self.cantidadLabel.isHidden = false
@@ -193,6 +196,10 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         }
     }
     
+    @IBAction func irVolver(_ sender: Any) {
+        self.performSegue(withIdentifier: "irTotalizar", sender: self)
+    }
+    
     func irSiguiente(){
         // Agregar el articulo al array de recibidos
         self.articulos.append(self.articulo)
@@ -262,7 +269,6 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         
     }
-    
     
     // PICKER VIEW
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
