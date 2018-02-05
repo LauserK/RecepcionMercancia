@@ -72,7 +72,15 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     @IBAction func searchButtonAction(_ sender: Any) {
-        buscarProducto(code: self.codigoInput.text!)
+        // Verificar tipo de busqueda
+        // Si tiene un '*' en el inicio busca por nombre
+        // Si no tiene un '*' busca por el codigo exacto
+        if(self.codigoInput.text![0] == "*"){
+            self.performSegue(withIdentifier: "irBuscarArticulo", sender: self)
+        
+        } else {
+            buscarProducto(code: self.codigoInput.text!)
+        }
     }
     
     @IBAction func editarButtonAction(_ sender: Any) {
@@ -311,6 +319,15 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 destination.articulos = self.articulos
             }
         }
+        
+        if segue.identifier == "irBuscarArticulo" {
+            if let destination = segue.destination as? BuscarArticulo {
+                destination.usuario = self.usuario
+                destination.proveedor = self.proveedor
+                destination.articulos_lista = self.articulos
+                destination.searchQueryText = self.codigoInput.text!
+            }
+        }
     }
 }
 
@@ -328,5 +345,143 @@ extension ArticuloController: BarcodeScannerDismissalDelegate {
     
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    // Vista para buscar proveedor y selecionar el proveedor
+    var searchQueryText = ""
+    var articulos = [["","",""]]
+    var articulos_lista = [["":""]]
+    var articulo = ["":""]
+    var proveedor = [
+        "razon_social":"",
+        "ci_rif": "",
+        "auto":""
+    ]
+    var usuario = [
+        "nombre": "",
+        "codigo": "",
+        "auto":""
+    ]
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var queryProveedorInput: UITextField!
+    
+    // Cuando damos tap en el view se quita el teclado
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func buscarProveedor(){
+        var sql = "SELECT auto, codigo, nombre FROM productos WHERE estatus = 'Activo'"
+        
+        var filtro = ""
+        if (self.searchQueryText != ""){
+            
+            filtro = "\(filtro) AND nombre LIKE '%\(self.searchQueryText)%'"
+            
+        }
+        
+        // COntruimos el query con la base y el filtro
+        sql = "\(sql)\(filtro)"
+        
+        // Buscamos todos los proveedores
+        ToolsPaseo().consultarDB(id: "open", sql: sql){ data in
+            
+            self.articulos = []
+            // Se le da formato a los datos a un ARRAY
+            for (_,subJson):(String, JSON) in data["data"] {
+                var articulo: [String] = []
+                for (_, articuloItem):(String, JSON) in subJson {
+                    articulo.append(articuloItem.string!)
+                }
+                self.articulos.append(articulo)
+            }
+            
+            // Actualizamos la tabla
+            self.tableView.reloadData()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Mostramos el nombre de usuario
+        
+        if (self.searchQueryText[0] == "*"){
+            self.searchQueryText.remove(at: searchQueryText.startIndex)
+            
+        }
+        
+        self.queryProveedorInput.text = self.searchQueryText
+        
+        // buscamos todos los proveedores
+        self.buscarProveedor()
+    }
+    
+    // Tabla
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.articulos.count
+    }
+    
+    // Asignamos valores a las celdas
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let newCell = tableView.dequeueReusableCell(withIdentifier: "proveedorItemCell") as! ProveedorCell
+        newCell.setName(name: "\(self.articulos[indexPath.row][2])")
+        newCell.setRIF(rif: "\(self.articulos[indexPath.row][1])")
+        return newCell
+    }
+    
+    // Asigamos el valor a la variable Proveedor con el selecionado
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.articulo["codigo"] = self.articulos[indexPath.row][1]
+    }
+    
+    
+    @IBAction func buscarArticuloButton(_ sender: Any) {
+        self.searchQueryText = self.queryProveedorInput.text!
+        
+        if (self.searchQueryText != ""){
+            //Filtramos los proveedores
+            self.buscarProveedor()
+        }
+    }
+    
+    @IBAction func elegirButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "returnToArticle", sender: self)
+    }
+    
+    // Preprara
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "returnToArticle" {
+            if let destination = segue.destination as? ArticuloController {
+                destination.usuario = self.usuario
+                destination.proveedor = self.proveedor
+                destination.articulos = self.articulos_lista
+                destination.articulo = self.articulo
+            }
+        }
+    }
+}
+
+
+// SUBSTRING IN ARRAY EXTENSION
+
+extension String {
+    
+    subscript (i: Int) -> Character {
+        return self[index(startIndex, offsetBy: i)]
+    }
+    
+    subscript (i: Int) -> String {
+        return String(self[i] as Character)
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let start = index(startIndex, offsetBy: r.lowerBound)
+        let end = index(startIndex, offsetBy: r.upperBound)
+        return self[Range(start ..< end)]
     }
 }

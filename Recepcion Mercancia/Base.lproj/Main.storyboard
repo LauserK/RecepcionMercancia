@@ -481,6 +481,7 @@
                         <outlet property="view" destination="jaA-qr-TYs" id="BIO-gW-g4F"/>
                         <segue destination="3f9-QY-dJq" kind="show" identifier="moveToEditCant" id="23k-dX-e8l"/>
                         <segue destination="SbK-Cm-URG" kind="show" identifier="irTotalizar" id="Dz3-Tf-hcp"/>
+                        <segue destination="mmc-Q6-a5G" kind="show" identifier="irBuscarArticulo" id="leX-RQ-1ec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rv1-F9-q9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -850,9 +851,118 @@
             </objects>
             <point key="canvasLocation" x="2422.5" y="865.14084507042253"/>
         </scene>
+        <!--Buscar Articulo-->
+        <scene sceneID="Ytt-d3-Fng">
+            <objects>
+                <viewController storyboardIdentifier="searchArticulo" id="mmc-Q6-a5G" customClass="BuscarArticulo" customModule="Recepcion_Mercancia" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4ih-Wl-Zvl"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xfh-fd-F5D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rxZ-oo-Tem">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BUSQUEDA DE ARTICULO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHz-Vr-4rP">
+                                <rect key="frame" x="16" y="36" width="288" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="NOMBRE DEL PROVEEDOR" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="dKv-Ib-PWT">
+                                <rect key="frame" x="16" y="75" width="288" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zW4-bN-72q">
+                                <rect key="frame" x="95" y="119" width="130" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.63137254899999995" green="0.52156862749999999" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="BUSCAR">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="buscarArticuloButton:" destination="mmc-Q6-a5G" eventType="touchUpInside" id="bid-fJ-UPT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="2xY-Lj-Wsk">
+                                <rect key="frame" x="16" y="510" width="288" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.63137254899999995" green="0.51764705879999995" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <state key="normal" title="ELEGIR">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="elegirButton:" destination="mmc-Q6-a5G" eventType="touchUpInside" id="jw3-IU-Y4W"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="58" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QxK-y0-dee">
+                                <rect key="frame" x="16" y="206" width="288" height="296"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="proveedorItemCell" rowHeight="58" id="2J1-6v-NHw" customClass="ProveedorCell" customModule="Recepcion_Mercancia" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="288" height="58"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2J1-6v-NHw" id="lgW-kI-dIX">
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="57"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RESTAURANTES DE COMIDA RAPIDA NUESTRO GRAN PAIS NGP CA" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gU1-KN-eTS">
+                                                    <rect key="frame" x="8" y="0.0" width="248" height="48"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="J-30494513-2" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewM-VS-nYm">
+                                                    <rect key="frame" x="162" y="33" width="118" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="proveedorName" destination="gU1-KN-eTS" id="zjh-IS-KfJ"/>
+                                            <outlet property="proveedorRIF" destination="ewM-VS-nYm" id="fVQ-Us-wuV"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="mmc-Q6-a5G" id="Z0F-vY-xyf"/>
+                                    <outlet property="delegate" destination="mmc-Q6-a5G" id="gVs-an-Pbu"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RESULTADOS DE LA BUSQUEDA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50a-vx-pA4">
+                                <rect key="frame" x="25" y="181" width="270" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97254901959999995" green="0.81568627449999997" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="queryProveedorInput" destination="dKv-Ib-PWT" id="8hR-17-5XZ"/>
+                        <outlet property="tableView" destination="QxK-y0-dee" id="Ste-cD-Fe4"/>
+                        <segue destination="zxZ-88-Krg" kind="show" identifier="returnToArticle" id="7qL-bz-OWb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Psc-fx-Xhw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2423" y="1572"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kA7-sZ-3Yd"/>
+        <segue reference="7qL-bz-OWb"/>
         <segue reference="D2H-dt-Aqs"/>
     </inferredMetricsTieBreakers>
 </document>
