@@ -112,7 +112,7 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
         var filtro = ""
         if (self.searchQueryText != ""){
             
-            filtro = "\(filtro) AND razon_social LIKE '%\(self.searchQueryText)%'"
+            filtro = "\(filtro) AND razon_social LIKE '%\(self.searchQueryText)%' AND auto_departamento = '0000000008'"
             
         }
         
