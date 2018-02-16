@@ -29,6 +29,7 @@
 		69842A6C5D23BD57D09152C1 /* Pods_Recepcion_Mercancia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recepcion_Mercancia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C0A0631D552C166D30CA10E /* Pods-Recepcion Mercancia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recepcion Mercancia.release.xcconfig"; path = "Pods/Target Support Files/Pods-Recepcion Mercancia/Pods-Recepcion Mercancia.release.xcconfig"; sourceTree = "<group>"; };
 		C6D8C7CFCCF490CA7106266C /* Pods-Recepcion Mercancia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recepcion Mercancia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Recepcion Mercancia/Pods-Recepcion Mercancia.debug.xcconfig"; sourceTree = "<group>"; };
+		FA0805AF20362152001DFB53 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWXMLHash.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/SWXMLHash/SWXMLHash.framework"; sourceTree = "<group>"; };
 		FA3F771E200CD0C500A118F7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		FA3F7720200CE40D00A118F7 /* tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tools.swift; sourceTree = "<group>"; };
 		FA3F7722200D322400A118F7 /* EscogerProveedor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EscogerProveedor.swift; path = ../EscogerProveedor.swift; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 		17C9319178D32A085A319FB9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA0805AF20362152001DFB53 /* SWXMLHash.framework */,
 				FAAE9D60201B564C00E11710 /* FontAwesome_swift.framework */,
 				FAAE9D5E201B556F00E11710 /* FontAwesome_swift.framework */,
 				FADDF67B2010F78300D046C8 /* BarcodeScanner.framework */,

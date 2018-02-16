@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import Alamofire
 
 class ViewController: UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
@@ -33,22 +34,32 @@ class ViewController: UIViewController {
             messageLabel.text = "CONTRASEÑA VACIA"
         } else {
             
-            // Realizamos la consulta
-            ToolsPaseo().consultarDB(id: "open", sql: "SELECT auto, nombre, codigo FROM usuarios WHERE codigo = '\(self.userField.text!)' AND clave = '\(self.passwordField.text!)'"){ data in
+            let params = [
+                "codigo": self.userField.text!,
+                "clave": self.passwordField.text!
+            ]
+            
+            Alamofire.request("http://10.10.0.250/RecepcionMercancia/Service.asmx/Login", method: .post, parameters:params).responseString {
+                response in
                 
-                // Si no se encontro
-                if (data["data"][0][0] == nil || data["data"][0][0] == "" || data["data"][0][0] == "null"){
-                    self.messageLabel.text = "DATOS INCORRECTOS"
-                } else {
-                    self.usuario["auto"] = String(describing: data["data"][0][0])
-                    self.usuario["nombre"] = String(describing: data["data"][0][1])
-                    self.usuario["codigo"] = String(describing: data["data"][0][2])
-                    
+                let data = JSON.init(parseJSON:response.result.value!)
+                
+                if (data[0]["error"] == false){
+                    self.usuario = [
+                        "nombre": data[0]["nombre"].string!,
+                        "codigo": data[0]["codigo"].string!,
+                        "auto":data[0]["auto"].string!
+                    ]
                     // REALIZAR EL SEGUE A LA SIGUIENTE PANTALLA (SELECIONAR PROVEEDOR)
                     self.performSegue(withIdentifier: "irProveedor", sender: self)
+                    
+                } else {
+                    self.messageLabel.text = "\(data[0]["erroDescription"])"
                 }
+                
+                
             }
-        
+            
         }
         
     }
