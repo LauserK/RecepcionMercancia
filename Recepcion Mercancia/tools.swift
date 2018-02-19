@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class ToolsPaseo {
+    let webservice = "http://10.10.0.250/RecepcionMercancia/Service.asmx"
     func consultarDB(id:String, sql:String, completion:@escaping (JSON) -> Void){
         let params = [
             "id":id,
@@ -37,5 +38,20 @@ class ToolsPaseo {
         
         alert.view.addSubview(loadingIndicator)
         vc.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    // Method por make a http POST request to webservice and returning a JSON object
+    func consultPOST(path: String, params: [String:AnyObject]?, completion:@escaping (JSON) -> Void){
+        
+        Alamofire.request("\(webservice)\(path)", method: .post, parameters:params).responseString {
+            response in
+            
+            if let json = response.result.value {
+                let data = JSON.init(parseJSON:json)
+                completion(data)
+            }
+        }
+        
     }
 }

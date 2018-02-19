@@ -16,11 +16,8 @@ class TecladoController: UIViewController {
         "ci_rif": "",
         "auto":""
     ]
-    var usuario = [
-        "nombre": "",
-        "codigo": "",
-        "auto":""
-    ]
+    var usuario: User!
+    
     var articulo = [
         "nombre": "",
         "codigo": "",

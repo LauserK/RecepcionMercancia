@@ -15,11 +15,7 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
         "ci_rif": "",
         "auto":""
     ]
-    var usuario = [
-        "nombre": "",
-        "codigo": "",
-        "auto":""
-    ]
+    var usuario: User!
     var articulo = [
         "nombre": "",
         "codigo": "",
@@ -45,7 +41,7 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
         articleTablewView.dataSource = self
         
         // Mostramos datos de usuario y proveedor
-        self.usuarioLabel.text = self.usuario["nombre"]
+        self.usuarioLabel.text = self.usuario.nombre
         self.proveedorLabel.text = self.proveedor["razon_social"]
         
         // Eliminar el articulo vacio
@@ -103,7 +99,7 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
             let auto_nuevo = auto + 1
             let auto_cuentas = String(format: "%010d", auto_nuevo)
             
-            let sql = "INSERT INTO `00000001`.`compras` (`auto`, `documento`, `fecha`, `fecha_vencimiento`, `razon_social`, `dir_fiscal`, `ci_rif`, `tipo`, `exento`, `base1`, `base2`, `base3`, `impuesto1`, `impuesto2`, `impuesto3`, `base`, `impuesto`, `total`, `tasa1`, `tasa2`, `tasa3`, `nota`, `tasa_retencion_iva`, `tasa_retencion_islr`, `retencion_iva`, `retencion_islr`, `auto_proveedor`, `codigo_proveedor`, `mes_relacion`, `control`, `fecha_registro`, `orden_compra`, `dias`, `descuento1`, `descuento2`, `cargos`, `descuento1p`, `descuento2p`, `cargosp`, `columna`, `estatus_anulado`, `aplica`, `comprobante_retencion`, `subtotal_neto`, `telefono`, `factor_cambio`, `condicion_pago`, `usuario`, `codigo_usuario`, `codigo_sucursal`, `hora`, `monto_divisa`, `estacion`, `renglones`, `saldo_pendiente`, `ano_relacion`, `comprobante_retencion_islr`, `dias_validez`, `auto_usuario`, `situacion`, `signo`, `serie`, `tarifa`, `tipo_remision`, `documento_remision`, `auto_remision`, `documento_nombre`, `subtotal_impuesto`, `subtotal`, `auto_cxp`, `tipo_proveedor`, `planilla`, `expediente`, `anticipo_iva`, `terceros_iva`, `neto`, `costo`, `utilidad`, `utilidadp`, `documento_tipo`, `denominacion_fiscal`) VALUES ('\(auto_cuentas)', '', '\(fecha)', '\(fecha)', '\(self.proveedor["razon_social"]!)', '\(self.proveedor["dir_fiscal"]!)', '\(self.proveedor["ci_rif"]!)', '07', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '', '0.00', '0.00', '0.00', '0.00', '\(self.proveedor["auto"]!)', '\(self.proveedor["ci_rif"]!)', '\(mes)', '', '\(fecha)', '', '0', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1', '0', '', '', '0.00', '', '0.0000', 'NO APLICA', '\(self.usuario["nombre"]!)', '\(self.usuario["codigo"]!)', '01', '\(hora)', '0.00', '\(device)', '\(self.articulos.count)', '0.00', '\(ano)', '', '0', '0000000001', 'Procesado', '0', 'RCP', '0', '', '', '', 'RECEPCION', '0.00', '0.00', '', '', '', '', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'RECEPCION', '');"
+            let sql = "INSERT INTO `00000001`.`compras` (`auto`, `documento`, `fecha`, `fecha_vencimiento`, `razon_social`, `dir_fiscal`, `ci_rif`, `tipo`, `exento`, `base1`, `base2`, `base3`, `impuesto1`, `impuesto2`, `impuesto3`, `base`, `impuesto`, `total`, `tasa1`, `tasa2`, `tasa3`, `nota`, `tasa_retencion_iva`, `tasa_retencion_islr`, `retencion_iva`, `retencion_islr`, `auto_proveedor`, `codigo_proveedor`, `mes_relacion`, `control`, `fecha_registro`, `orden_compra`, `dias`, `descuento1`, `descuento2`, `cargos`, `descuento1p`, `descuento2p`, `cargosp`, `columna`, `estatus_anulado`, `aplica`, `comprobante_retencion`, `subtotal_neto`, `telefono`, `factor_cambio`, `condicion_pago`, `usuario`, `codigo_usuario`, `codigo_sucursal`, `hora`, `monto_divisa`, `estacion`, `renglones`, `saldo_pendiente`, `ano_relacion`, `comprobante_retencion_islr`, `dias_validez`, `auto_usuario`, `situacion`, `signo`, `serie`, `tarifa`, `tipo_remision`, `documento_remision`, `auto_remision`, `documento_nombre`, `subtotal_impuesto`, `subtotal`, `auto_cxp`, `tipo_proveedor`, `planilla`, `expediente`, `anticipo_iva`, `terceros_iva`, `neto`, `costo`, `utilidad`, `utilidadp`, `documento_tipo`, `denominacion_fiscal`) VALUES ('\(auto_cuentas)', '', '\(fecha)', '\(fecha)', '\(self.proveedor["razon_social"]!)', '\(self.proveedor["dir_fiscal"]!)', '\(self.proveedor["ci_rif"]!)', '07', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '', '0.00', '0.00', '0.00', '0.00', '\(self.proveedor["auto"]!)', '\(self.proveedor["ci_rif"]!)', '\(mes)', '', '\(fecha)', '', '0', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '1', '0', '', '', '0.00', '', '0.0000', 'NO APLICA', '\(self.usuario.nombre!)', '\(self.usuario.codigo!)', '01', '\(hora)', '0.00', '\(device)', '\(self.articulos.count)', '0.00', '\(ano)', '', '0', '0000000001', 'Procesado', '0', 'RCP', '0', '', '', '', 'RECEPCION', '0.00', '0.00', '', '', '', '', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', 'RECEPCION', '');"
             
             // Insertar en la base de datos
             ToolsPaseo().consultarDB(id: "open", sql: sql){ data in

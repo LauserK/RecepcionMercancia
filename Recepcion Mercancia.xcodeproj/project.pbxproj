@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4363916CE309A3B71A4F82AF /* Pods_Recepcion_Mercancia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69842A6C5D23BD57D09152C1 /* Pods_Recepcion_Mercancia.framework */; };
+		FA0805B5203B63FD001DFB53 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0805B4203B63FD001DFB53 /* User.swift */; };
 		FA3F771F200CD0C500A118F7 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA3F771E200CD0C500A118F7 /* SwiftyJSON.framework */; };
 		FA3F7721200CE40E00A118F7 /* tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F7720200CE40D00A118F7 /* tools.swift */; };
 		FA3F7723200D322400A118F7 /* EscogerProveedor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3F7722200D322400A118F7 /* EscogerProveedor.swift */; };
@@ -30,6 +31,7 @@
 		9C0A0631D552C166D30CA10E /* Pods-Recepcion Mercancia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recepcion Mercancia.release.xcconfig"; path = "Pods/Target Support Files/Pods-Recepcion Mercancia/Pods-Recepcion Mercancia.release.xcconfig"; sourceTree = "<group>"; };
 		C6D8C7CFCCF490CA7106266C /* Pods-Recepcion Mercancia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recepcion Mercancia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Recepcion Mercancia/Pods-Recepcion Mercancia.debug.xcconfig"; sourceTree = "<group>"; };
 		FA0805AF20362152001DFB53 /* SWXMLHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SWXMLHash.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/SWXMLHash/SWXMLHash.framework"; sourceTree = "<group>"; };
+		FA0805B4203B63FD001DFB53 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = models/User.swift; sourceTree = "<group>"; };
 		FA3F771E200CD0C500A118F7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		FA3F7720200CE40D00A118F7 /* tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tools.swift; sourceTree = "<group>"; };
 		FA3F7722200D322400A118F7 /* EscogerProveedor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EscogerProveedor.swift; path = ../EscogerProveedor.swift; sourceTree = "<group>"; };
@@ -89,6 +91,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FA0805B1203B63C2001DFB53 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				FA0805B4203B63FD001DFB53 /* User.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
 		FA78678B20079CBA00BB4D12 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +120,7 @@
 		FA78679620079CBA00BB4D12 /* Recepcion Mercancia */ = {
 			isa = PBXGroup;
 			children = (
+				FA0805B1203B63C2001DFB53 /* models */,
 				FADDF6702010D68200D046C8 /* controllers */,
 				FA78679920079CBA00BB4D12 /* ViewController.swift */,
 				FA78679720079CBA00BB4D12 /* AppDelegate.swift */,
@@ -275,6 +286,7 @@
 				FA78679A20079CBA00BB4D12 /* ViewController.swift in Sources */,
 				FAAE9D592013E88A00E11710 /* TecladoController.swift in Sources */,
 				FADDF6722010D6C800D046C8 /* ArticuloController.swift in Sources */,
+				FA0805B5203B63FD001DFB53 /* User.swift in Sources */,
 				FAAE9D5B201A7F8900E11710 /* TotalizarController.swift in Sources */,
 				FA78679820079CBA00BB4D12 /* AppDelegate.swift in Sources */,
 				FA3F7723200D322400A118F7 /* EscogerProveedor.swift in Sources */,

@@ -12,11 +12,7 @@ import SwiftyJSON
 
 class EscogerProveedor: UIViewController {
     // Vista en donde escogemos el proveedor y selecionasmos orden de compra
-    var usuario = [
-        "nombre": "",
-        "codigo": "",
-        "auto":""
-    ]
+    var usuario: User!
     
     var proveedor = [
         "razon_social":"",
@@ -68,7 +64,7 @@ class EscogerProveedor: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.userLabel.text = self.usuario["nombre"]
+        self.userLabel.text = self.usuario.nombre
         
         self.proveedorQuery.text = self.proveedor["razon_social"]
         
@@ -93,11 +89,9 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
         "ci_rif": "",
         "auto":""
     ]
-    var usuario = [
-        "nombre": "",
-        "codigo": "",
-        "auto":""
-    ]
+    
+    var usuario: User!
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var queryProveedorInput: UITextField!
     
