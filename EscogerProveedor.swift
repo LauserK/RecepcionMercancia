@@ -12,33 +12,28 @@ import SwiftyJSON
 
 class EscogerProveedor: UIViewController {
     // Vista en donde escogemos el proveedor y selecionasmos orden de compra
-    var usuario: User!
     
+    // Objecto usuario
+    var usuario: User!
+    // Objecto proveedor
     var proveedor:Proveedor?
     
     @IBOutlet weak var userLabel: UILabel!
-    
     @IBOutlet weak var proveedorQuery: UITextField!
-    
     @IBOutlet weak var searchProveedorBtn: UIButton!
     
     @IBAction func searchProveedor(_ sender: Any) {
-        
+        // al pulsar BUSCAR vamos a la vista correspondiente
         self.performSegue(withIdentifier: "irBuscarProveedor", sender: self)
         
     }
     
     @IBAction func seguirSinOCButtonAction(_ sender: Any) {
-        
+        // Al dar click a Segir sin Orden de Compra vamos a la vista de articulo
         if (self.proveedor?.razon_social != ""){
             self.performSegue(withIdentifier: "moveToArticle", sender: self)
         }
         
-    }
-    
-    
-    public func setProveedor(text: String){
-        self.proveedorQuery.text = text
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -60,8 +55,10 @@ class EscogerProveedor: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Mostramos el nombre de usuario en la parte superior
         self.userLabel.text = self.usuario.nombre
         
+        // Si existe algun dato en el objeto proveedor lo mostramos
         self.proveedorQuery.text = self.proveedor?.razon_social
         
         // Cuando se hace TAP en cualquier lugar oculta el keyboard
@@ -79,10 +76,11 @@ class EscogerProveedor: UIViewController {
 class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // Vista para buscar proveedor y selecionar el proveedor
     var searchQueryText = ""
+    // Arreglo con lista de proveedores que usaremos para mostrar en el list view
     var proveedores = [Proveedor]()
-    
+    // Objecto proveedor
     var proveedor:Proveedor!
-    
+    // Objecto Usuario
     var usuario: User!
     
     @IBOutlet weak var tableView: UITableView!
@@ -94,13 +92,15 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func buscarProveedor(){
+        // quitamos los datos anteriores
         self.proveedores.removeAll()
+        
         // Pasamos los parametros
-        let params = ["razon_social": "\(self.queryProveedorInput.text!)"]
+        let params = ["razon_social": "\(self.searchQueryText)"]
         // Ejecutamos el servicio
         ToolsPaseo().consultPOST(path: "/GetProveedores", params: params) { data in
             
-            // Rec
+            // agregamos datos al arreglo de proveedores
             for (_, subJson):(String, JSON) in data {
                 let proveedor = Proveedor()
                 proveedor.auto = subJson["auto"].string!
@@ -109,7 +109,7 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
                 proveedor.dir_fiscal = subJson["dir_fiscal"].string!
                 self.proveedores.append(proveedor)
                 
-                // Actualizamos la tabla
+                // Actualizamos la tabla con los nuevos datos
                 self.tableView.reloadData()
             }
         
@@ -120,10 +120,9 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.viewDidLoad()
         
         // Mostramos el nombre de usuario
-        
         self.queryProveedorInput.text = self.searchQueryText
         
-        // buscamos todos los proveedores
+        // buscamos todos los proveedores de inicio
         self.buscarProveedor()
     }
     
@@ -150,6 +149,7 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     @IBAction func buscarProveedorButton(_ sender: Any) {
+        // Cuando damos click en BUSCAR
         self.searchQueryText = self.queryProveedorInput.text!
         
         if (self.searchQueryText != ""){

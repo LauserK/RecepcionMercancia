@@ -19,17 +19,17 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var sendBtn: UIButton!
     
-    // Informacion del usuario
+    // Objecto usuario
     var usuario: User!
     
     @IBAction func sendButton(_ sender: Any) {
-        // Validaciones
+        // Verificamos que los campos no estan vacios
         if (userField.text == "") {
-            messageLabel.text = "USUARIO VACIO"
+            messageLabel.text = "¡El campo usuario está vacio!"
         } else if (passwordField.text == ""){
-            messageLabel.text = "CONTRASEÑA VACIA"
+            messageLabel.text = "¡El campo contraseña está vacio!"
         } else {
-            
+            // Si todo OK realizamos la consulta para verificar si existe el usuario
             let params = [
                 "codigo": self.userField.text!,
                 "clave": self.passwordField.text!
@@ -47,6 +47,7 @@ class ViewController: UIViewController {
                     self.performSegue(withIdentifier: "irProveedor", sender: self)
                     
                 } else {
+                    // Si hubo algun error en la consulta mostramos el error
                     self.messageLabel.text = "\(data[0]["erroDescription"])"
                 }
             
