@@ -35,11 +35,7 @@ class ViewController: UIViewController {
                 "clave": self.passwordField.text!
             ]
             
-            Alamofire.request("http://10.10.0.250/RecepcionMercancia/Service.asmx/Login", method: .post, parameters:params).responseString {
-                response in
-                
-                let data = JSON.init(parseJSON:response.result.value!)
-                
+            ToolsPaseo().consultPOST(path: "/Login", params: params){ data in
                 if (data[0]["error"] == false){
                     // Populate the user object
                     self.usuario = User()
@@ -53,10 +49,8 @@ class ViewController: UIViewController {
                 } else {
                     self.messageLabel.text = "\(data[0]["erroDescription"])"
                 }
-                
-                
-            }
             
+            }
         }
         
     }

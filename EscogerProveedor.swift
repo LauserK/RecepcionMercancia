@@ -14,11 +14,7 @@ class EscogerProveedor: UIViewController {
     // Vista en donde escogemos el proveedor y selecionasmos orden de compra
     var usuario: User!
     
-    var proveedor = [
-        "razon_social":"",
-        "ci_rif": "",
-        "auto":""
-    ]
+    var proveedor:Proveedor?
     
     @IBOutlet weak var userLabel: UILabel!
     
@@ -34,7 +30,7 @@ class EscogerProveedor: UIViewController {
     
     @IBAction func seguirSinOCButtonAction(_ sender: Any) {
         
-        if (self.proveedor["razon_social"] != ""){
+        if (self.proveedor?.razon_social != ""){
             self.performSegue(withIdentifier: "moveToArticle", sender: self)
         }
         
@@ -66,7 +62,7 @@ class EscogerProveedor: UIViewController {
         
         self.userLabel.text = self.usuario.nombre
         
-        self.proveedorQuery.text = self.proveedor["razon_social"]
+        self.proveedorQuery.text = self.proveedor?.razon_social
         
         // Cuando se hace TAP en cualquier lugar oculta el keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
@@ -83,12 +79,9 @@ class EscogerProveedor: UIViewController {
 class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // Vista para buscar proveedor y selecionar el proveedor
     var searchQueryText = ""
-    var proveedores = [["","",""]]
-    var proveedor = [
-        "razon_social":"",
-        "ci_rif": "",
-        "auto":""
-    ]
+    var proveedores = [Proveedor]()
+    
+    var proveedor:Proveedor!
     
     var usuario: User!
     
@@ -101,33 +94,25 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func buscarProveedor(){
-        var sql = "SELECT auto, razon_social, ci_rif, dir_fiscal FROM proveedores WHERE estatus = 'Activo'"
-        
-        var filtro = ""
-        if (self.searchQueryText != ""){
+        self.proveedores.removeAll()
+        // Pasamos los parametros
+        let params = ["razon_social": "\(self.queryProveedorInput.text!)"]
+        // Ejecutamos el servicio
+        ToolsPaseo().consultPOST(path: "/GetProveedores", params: params) { data in
             
-            filtro = "\(filtro) AND razon_social LIKE '%\(self.searchQueryText)%' AND auto_departamento = '0000000008'"
-            
-        }
-        
-        // COntruimos el query con la base y el filtro
-        sql = "\(sql)\(filtro)"
-        
-        // Buscamos todos los proveedores
-        ToolsPaseo().consultarDB(id: "open", sql: sql){ data in
-            
-            self.proveedores = []
-            // Se le da formato a los datos a un ARRAY
-            for (_,subJson):(String, JSON) in data["data"] {
-                var proveedor: [String] = []
-                for (_, proveedorItem):(String, JSON) in subJson {
-                    proveedor.append(proveedorItem.string!)
-                }
+            // Rec
+            for (_, subJson):(String, JSON) in data {
+                let proveedor = Proveedor()
+                proveedor.auto = subJson["auto"].string!
+                proveedor.razon_social = subJson["razon_social"].string!
+                proveedor.ci_rif = subJson["ci_rif"].string!
+                proveedor.dir_fiscal = subJson["dir_fiscal"].string!
                 self.proveedores.append(proveedor)
+                
+                // Actualizamos la tabla
+                self.tableView.reloadData()
             }
-            
-            // Actualizamos la tabla
-            self.tableView.reloadData()
+        
         }
     }
     
@@ -150,17 +135,18 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
     // Asignamos valores a las celdas
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let newCell = tableView.dequeueReusableCell(withIdentifier: "proveedorItemCell") as! ProveedorCell
-        newCell.setName(name: "\(self.proveedores[indexPath.row][1])")
-        newCell.setRIF(rif: "\(self.proveedores[indexPath.row][2])")
+        newCell.setName(name: "\(self.proveedores[indexPath.row].razon_social!)")
+        newCell.setRIF(rif: "\(self.proveedores[indexPath.row].ci_rif!)")
         return newCell
     }
     
     // Asigamos el valor a la variable Proveedor con el selecionado
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.proveedor["auto"] = self.proveedores[indexPath.row][0]
-        self.proveedor["razon_social"] = self.proveedores[indexPath.row][1]
-        self.proveedor["ci_rif"] = self.proveedores[indexPath.row][2]
-        self.proveedor["dir_fiscal"] = self.proveedores[indexPath.row][3]
+        self.proveedor = Proveedor()
+        self.proveedor.auto = self.proveedores[indexPath.row].auto!
+        self.proveedor.razon_social = self.proveedores[indexPath.row].razon_social!
+        self.proveedor.ci_rif = self.proveedores[indexPath.row].ci_rif!
+        self.proveedor.dir_fiscal = self.proveedores[indexPath.row].dir_fiscal!
     }
     
     @IBAction func buscarProveedorButton(_ sender: Any) {

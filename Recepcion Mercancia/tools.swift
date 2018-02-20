@@ -42,7 +42,7 @@ class ToolsPaseo {
     
     
     // Method por make a http POST request to webservice and returning a JSON object
-    func consultPOST(path: String, params: [String:AnyObject]?, completion:@escaping (JSON) -> Void){
+    func consultPOST(path: String, params: [String:String]?, completion:@escaping (JSON) -> Void){
         
         Alamofire.request("\(webservice)\(path)", method: .post, parameters:params).responseString {
             response in

@@ -11,11 +11,7 @@ import UIKit
 import SwiftyJSON
 
 class TecladoController: UIViewController {
-    var proveedor = [
-        "razon_social":"",
-        "ci_rif": "",
-        "auto":""
-    ]
+    var proveedor: Proveedor!
     var usuario: User!
     
     var articulo = [

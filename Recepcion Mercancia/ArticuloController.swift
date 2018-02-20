@@ -23,11 +23,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet weak var titulo2Label: UILabel!
     @IBOutlet weak var unidadLabel: UILabel!
     
-    var proveedor = [
-        "razon_social":"",
-        "ci_rif": "",
-        "auto":""
-    ]
+    var proveedor: Proveedor!
     
     var usuario: User!
     
@@ -158,7 +154,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         unidadMedidaPicker.delegate = self
         unidadMedidaPicker.dataSource = self
         
-        self.proveedorLabel.text = self.proveedor["razon_social"]
+        self.proveedorLabel.text = self.proveedor.razon_social
         self.usuarioLabel.text = self.usuario.nombre
         
         // ocultar controles de cantidades y medidas o mostrar datos
@@ -353,11 +349,7 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
     var articulos = [["","",""]]
     var articulos_lista = [["":""]]
     var articulo = ["":""]
-    var proveedor = [
-        "razon_social":"",
-        "ci_rif": "",
-        "auto":""
-    ]
+    var proveedor: Proveedor!
     var usuario: User!
     @IBOutlet weak var tableView: UITableView!
     
