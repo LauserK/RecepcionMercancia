@@ -30,7 +30,7 @@ class EscogerProveedor: UIViewController {
     
     @IBAction func seguirSinOCButtonAction(_ sender: Any) {
         // Al dar click a Segir sin Orden de Compra vamos a la vista de articulo
-        if (self.proveedor?.razon_social != ""){
+        if (self.proveedor?.razon_social != nil){
             self.performSegue(withIdentifier: "moveToArticle", sender: self)
         }
         
