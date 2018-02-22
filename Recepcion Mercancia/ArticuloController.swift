@@ -89,8 +89,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 // Populate the article object
                 self.articulo = Article()
                 self.articulo.nombre            = data["nombre"].string!
-                //self.articulo.codigo            = data["codigo"].string!
-                self.articulo.codigo = "306"
+                self.articulo.codigo            = data["codigo"].string!
                 self.articulo.auto              = data["auto"].string!
                 self.articulo.contenido_compras = Int(data["contenido_compras"].string!)
                 self.articulo.auto_departamento = data["nombre"].string!
