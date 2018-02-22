@@ -14,13 +14,9 @@ class TecladoController: UIViewController {
     var proveedor: Proveedor!
     var usuario: User!
     
-    var articulo = [
-        "nombre": "",
-        "codigo": "",
-        "auto":""
-    ]
-    
-    var articulos = [["":""]]
+    var articulo: Article!
+    var articulos = [Article]()
+    var decimales = false
     
     
     @IBOutlet weak var labelText: UILabel!
@@ -35,15 +31,27 @@ class TecladoController: UIViewController {
     }
     
     func mete(text: String){
-        if (self.labelText.text == "0"){
-            self.labelText.text = "\(text)"
-        } else {
+        
+        // Si se pulso '.'
+        if (text == "." && decimales == false){
+            self.decimales = true
             self.labelText.text = "\(self.labelText.text!)\(text)"
+        } else if (text == "." && decimales == true){
+            
+        } else {
+            if (self.labelText.text == "0"){
+                self.labelText.text = "\(text)"
+            } else {
+                self.labelText.text = "\(self.labelText.text!)\(text)"
+            }
         }
         
     }
     @IBAction func borrar(_ sender: Any) {
         if (self.labelText.text!.characters.count > 0){
+            if (self.labelText.text![self.labelText.text!.characters.count - 1] == "."){
+                self.decimales = false
+            }
             self.labelText.text = labelText.text!.substring(to: labelText.text!.index(before: labelText.text!.endIndex))
         } else {
             self.labelText.text = "0"

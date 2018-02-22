@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+class Article {
+    var nombre: String?
+    var codigo: String?
+    var auto: String?
+    var contenido_compras: Int?
+    var auto_departamento: String?
+    var auto_grupo: String?
+    var auto_subgrupo: String?
+    var auto_deposito: [[String : String]]?
+    var cantidad_recibida: String?
+    var cantidad_factura: String?
+    var auto_medida: String?
+
+}

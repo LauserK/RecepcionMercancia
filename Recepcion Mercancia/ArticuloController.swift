@@ -27,17 +27,11 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     var usuario: User!
     
-    var articulo = [
-        "nombre": "",
-        "codigo": "",
-        "auto":"",
-        "cantidad_recibida":"",
-        "cantidad_factura":""
-    ]
+    var articulo: Article!
     
     var cantidad = "0"
     
-    var articulos = [["":""]]
+    var articulos = [Article]()
     
     var unidadMedidaData = [["",""]]
     
@@ -48,16 +42,17 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     private let controller = BarcodeScannerController()
     
     @IBAction func cantidadMenos(_ sender: Any) {
-        let cantidad: Int = Int(self.cantidadLabel.text!)!
-        
-        if (cantidad > 0){
-            self.cantidadLabel.text = String(cantidad - 1)
+        if let cantidad = Int(self.cantidadLabel.text!) {
+            if (cantidad > 0){
+                self.cantidadLabel.text = String(cantidad - 1)
+            }
         }
     }
     
     @IBAction func cantidadMas(_ sender: Any) {
-        let cantidad: Int = Int(self.cantidadLabel.text!)!
-        self.cantidadLabel.text = String(cantidad + 1)
+        if let cantidad = Int(self.cantidadLabel.text!) {
+            self.cantidadLabel.text = String(cantidad + 1)
+        }
     }
     
     @IBAction func scanButtonAction(_ sender: Any) {
@@ -84,20 +79,24 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func buscarProducto(code: String){
-        ToolsPaseo().consultarDB(id: "open", sql: "SELECT productos.auto, productos.nombre, productos.codigo, productos_medida.auto AS auto_medida, productos.contenido_compras, productos.auto_departamento, productos.auto_grupo, productos.auto_subgrupo FROM productos INNER JOIN productos_medida ON productos.auto_empaque_compra = productos_medida.auto WHERE productos.codigo = '\(code)'"){ data in
-            
-            if (data["data"][0][1] == nil){
-                self.articuloLabel.text = "¡ARTÍCULO NO EXISTE!"
-                self.articuloLabel.textColor = UIColor.red
-            } else {
-                self.articulo["nombre"] = data["data"][0][1].string
-                self.articulo["codigo"] = data["data"][0][2].string
-                self.articulo["auto"] = data["data"][0][0].string
-                self.articulo["auto_medida"] = data["data"][0][3].string
-                self.articulo["contenido_compras"] = "\(data["data"][0][4])"
-                self.articulo["auto_departamento"] = "\(data["data"][0][5])"
-                self.articulo["auto_grupo"] = "\(data["data"][0][6])"
-                self.articulo["auto_subgrupo"] = "\(data["data"][0][7])"
+        // Si todo OK realizamos la consulta para obtener los datos del articulo
+        let params = [
+            "code": code
+        ]
+        
+        ToolsPaseo().consultPOST(path: "/GetArticle", params: params){ data in
+            if (data[0]["error"] != true){
+                // Populate the article object
+                self.articulo = Article()
+                self.articulo.nombre            = data["nombre"].string!
+                //self.articulo.codigo            = data["codigo"].string!
+                self.articulo.codigo = "306"
+                self.articulo.auto              = data["auto"].string!
+                self.articulo.contenido_compras = Int(data["contenido_compras"].string!)
+                self.articulo.auto_departamento = data["nombre"].string!
+                self.articulo.auto_grupo        = data["auto_grupo"].string!
+                self.articulo.auto_subgrupo     = data["auto_subgrupo"].string!
+                //self.articulo.auto_deposito     = data[0]["auto_deposito"].string!
                 
                 // mostrar controles de cantidades y medidas
                 self.cantidadLabel.isHidden = false
@@ -109,27 +108,18 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 self.unidadLabel.isHidden = false
                 
                 // Mostramos los datos
-                self.articuloLabel.text = self.articulo["nombre"]
+                self.articuloLabel.text = self.articulo.nombre!
+                self.unidadLabel.text = "\(self.articulo.contenido_compras!) unds"
+                // MARK.- Here have to be procedure to change the picker to medida indicated
                 
-                // Cambiar selecion del picker al indicado
-                var c = 0
-                for data in self.unidadMedidaData{
-                    if (data[0] == self.articulo["auto_medida"]){
-                        let nombre = data[1]
-                        let decimales = data[2]
-                        
-                        if (self.cantidad != "0"){
-                            self.cantidadLabel.text = "\(self.cantidad)"
-                        }
-                        
-                        self.unidadLabel.text = "\(nombre): \(self.articulo["contenido_compras"]!) unds"
-                        
-                        self.unidadMedidaPicker.selectRow(c, inComponent: 0, animated: false)
-                    }
-                    c += 1
-                }
+            } else {
+                // Si hubo algun error en la consulta mostramos el error
+                self.articuloLabel.text = "\(data["erroDescription"])"
+                self.articuloLabel.textColor = UIColor.red
             }
+            
         }
+        
     }
     
     func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
@@ -179,6 +169,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         
         
         // Buscar unidades de medida
+        /*
         ToolsPaseo().consultarDB(id: "open", sql: "SELECT auto, nombre, decimales FROM productos_medida"){ data in
             self.unidadMedidaData = []
             for (_,subJson):(String, JSON) in data["data"] {
@@ -190,10 +181,14 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
             }
             //Actualizamos el picker
             self.unidadMedidaPicker?.reloadAllComponents()
-            
-            // Si vienes de editar la cantidad
-            if (self.articulo["codigo"] != ""){
-                self.buscarProducto(code: self.articulo["codigo"]!)
+        }*/
+        
+        // Si vienes de editar la cantidad
+        if (self.articulo != nil){
+            self.buscarProducto(code: self.articulo.codigo!)
+            // Mostrar la cantidad inputada en la vista anterior
+            if (self.cantidad != "0"){
+                self.cantidadLabel.text = "\(self.cantidad)"
             }
         }
     }
@@ -234,9 +229,9 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     @IBAction func handleNext(_ sender: Any) {
-        if(self.articulo["nombre"] != "" && self.cantidadLabel.text != "0" && self.tipoPantalla == 1){
+        if(self.articulo.nombre != nil && self.cantidadLabel.text != "0" && self.tipoPantalla == 1){
             
-            self.articulo["cantidad_recibida"] = self.cantidadLabel.text!
+            self.articulo.cantidad_recibida = self.cantidadLabel.text!
             
             // create the alert
             let alert = UIAlertController(title: self.articuloLabel.text!, message: "¿La cantidad recibida es la misma que especifica la factura?", preferredStyle: UIAlertControllerStyle.alert)
@@ -261,9 +256,9 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
             self.present(alert, animated: true, completion: nil)
         }
         
-        if (self.articulo["nombre"] != "" && self.cantidadLabel.text != "0" && self.tipoPantalla == 2) {
+        if (self.articulo.nombre != nil && self.cantidadLabel.text != "0" && self.tipoPantalla == 2) {
             
-            self.articulo["cantidad_factura"] = self.cantidadLabel.text!
+            self.articulo.cantidad_factura = self.cantidadLabel.text!
             self.irSiguiente()
         
         }
@@ -346,9 +341,9 @@ extension ArticuloController: BarcodeScannerDismissalDelegate {
 class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // Vista para buscar proveedor y selecionar el proveedor
     var searchQueryText = ""
-    var articulos = [["","",""]]
-    var articulos_lista = [["":""]]
-    var articulo = ["":""]
+    var articulos = [Article]()
+    var articulos_lista = [Article]()
+    var articulo: Article!
     var proveedor: Proveedor!
     var usuario: User!
     @IBOutlet weak var tableView: UITableView!
@@ -361,33 +356,25 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func buscarProveedor(){
-        var sql = "SELECT auto, codigo, nombre FROM productos WHERE estatus = 'Activo'"
+        let params = [
+            "nombre":"\(self.searchQueryText)"
+        ]
         
-        var filtro = ""
-        if (self.searchQueryText != ""){
-            
-            filtro = "\(filtro) AND nombre LIKE '%\(self.searchQueryText)%'"
-            
-        }
-        
-        // COntruimos el query con la base y el filtro
-        sql = "\(sql)\(filtro)"
-        
-        // Buscamos todos los proveedores
-        ToolsPaseo().consultarDB(id: "open", sql: sql){ data in
-            
-            self.articulos = []
-            // Se le da formato a los datos a un ARRAY
-            for (_,subJson):(String, JSON) in data["data"] {
-                var articulo: [String] = []
-                for (_, articuloItem):(String, JSON) in subJson {
-                    articulo.append(articuloItem.string!)
-                }
-                self.articulos.append(articulo)
+        // Ejecutamos el servicio
+        ToolsPaseo().consultPOST(path: "/GetArticlesList", params: params) { data in
+            print(data)
+            // agregamos datos al arreglo de proveedores
+            for (_, subJson):(String, JSON) in data {
+                let article = Article()
+                article.auto = subJson["auto"].string!
+                article.nombre = subJson["nombre"].string!
+                article.codigo = subJson["codigo"].string!
+                self.articulos.append(article)
+                
+                // Actualizamos la tabla con los nuevos datos
+                self.tableView.reloadData()
             }
             
-            // Actualizamos la tabla
-            self.tableView.reloadData()
         }
     }
     
@@ -415,14 +402,16 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
     // Asignamos valores a las celdas
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let newCell = tableView.dequeueReusableCell(withIdentifier: "proveedorItemCell") as! ProveedorCell
-        newCell.setName(name: "\(self.articulos[indexPath.row][2])")
-        newCell.setRIF(rif: "\(self.articulos[indexPath.row][1])")
+        // Nombre articulo
+        newCell.setName(name: "\(self.articulos[indexPath.row].nombre!)")
+        // Codigo de articulo
+        newCell.setRIF(rif: "\(self.articulos[indexPath.row].codigo!)")
         return newCell
     }
     
     // Asigamos el valor a la variable Proveedor con el selecionado
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.articulo["codigo"] = self.articulos[indexPath.row][1]
+        self.articulo = self.articulos[indexPath.row]
     }
     
     
