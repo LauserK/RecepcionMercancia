@@ -76,7 +76,6 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
         let hora = "\(hour):\(minutes)"
         let device = UIDevice.current.name
         
-        
         // MARK.- HERE IS WHERE HAVE TO BE THE PROCEDURE TO REGISTER THE DOCUMENT
 
     }
@@ -100,7 +99,7 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func editarArticulo(_ sender: Any) {
-        if(self.articulo.nombre != nil && self.articulo.auto != nil){
+        if(self.articulo != nil){
             
             self.articulos.remove(at:self.selectedArticle)
             
@@ -129,10 +128,7 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // Asigamos el valor a la variable Proveedor con el selecionado
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.articulo = Article()
-        self.articulo.auto   = self.articulos[indexPath.row].auto
-        self.articulo.nombre = self.articulos[indexPath.row].nombre
-        self.articulo.codigo = self.articulos[indexPath.row].codigo
+        self.articulo = self.articulos[indexPath.row]
         self.selectedArticle = indexPath.row
     }
     

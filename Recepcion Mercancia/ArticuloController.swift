@@ -361,7 +361,6 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // Ejecutamos el servicio
         ToolsPaseo().consultPOST(path: "/GetArticlesList", params: params) { data in
-            print(data)
             // agregamos datos al arreglo de proveedores
             for (_, subJson):(String, JSON) in data {
                 let article = Article()
