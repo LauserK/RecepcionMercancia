@@ -30,8 +30,16 @@ class EscogerProveedor: UIViewController {
     
     @IBAction func seguirSinOCButtonAction(_ sender: Any) {
         // Al dar click a Segir sin Orden de Compra vamos a la vista de articulo
-        if (self.proveedor?.razon_social != ""){
+        if (self.proveedor != nil){
             self.performSegue(withIdentifier: "moveToArticle", sender: self)
+        } else {
+            // create the alert
+            let alert = UIAlertController(title: "¡ERROR!", message: "¡Debes de seleccionar el proveedor!", preferredStyle: UIAlertControllerStyle.alert)
+            
+            alert.addAction(UIAlertAction(title: "ACEPTAR", style: .cancel, handler: nil))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
         }
         
     }
