@@ -66,7 +66,7 @@
                         <outlet property="passwordField" destination="f3f-WL-0Q5" id="xpT-Br-HRS"/>
                         <outlet property="sendBtn" destination="BRw-xd-2tZ" id="sJe-Ha-NHn"/>
                         <outlet property="userField" destination="GIU-jp-5oX" id="SWp-Vn-9m4"/>
-                        <segue destination="IBI-PM-hr8" kind="show" identifier="irProveedor" id="ZYF-q1-GDQ"/>
+                        <segue destination="IBI-PM-hr8" kind="showDetail" identifier="irProveedor" action="showViewController:sender:" id="ZYF-q1-GDQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -172,8 +172,8 @@
                         <outlet property="proveedorQuery" destination="2zB-F5-1qP" id="2uJ-9R-B2D"/>
                         <outlet property="searchProveedorBtn" destination="1Wj-Cr-YKe" id="Q1W-nA-bTC"/>
                         <outlet property="userLabel" destination="nnn-4E-Lxe" id="bGg-NU-Ilv"/>
-                        <segue destination="K4m-eD-BSL" kind="show" identifier="irBuscarProveedor" id="ty8-kC-JoQ"/>
-                        <segue destination="zxZ-88-Krg" kind="show" identifier="moveToArticle" id="lu6-LG-lOI"/>
+                        <segue destination="K4m-eD-BSL" kind="showDetail" identifier="irBuscarProveedor" action="showViewController:sender:" id="ty8-kC-JoQ"/>
+                        <segue destination="zxZ-88-Krg" kind="showDetail" identifier="moveToArticle" action="showViewController:sender:" id="lu6-LG-lOI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBM-q8-NHO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -282,7 +282,7 @@
                     <connections>
                         <outlet property="queryProveedorInput" destination="ayY-v9-iIv" id="IBQ-ja-k6G"/>
                         <outlet property="tableView" destination="bOI-rb-klG" id="y1R-Eu-GfE"/>
-                        <segue destination="IBI-PM-hr8" kind="show" identifier="returnToProveedor" id="D2H-dt-Aqs"/>
+                        <segue destination="IBI-PM-hr8" kind="showDetail" identifier="returnToProveedor" action="showViewController:sender:" id="D2H-dt-Aqs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="die-eV-nuL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -480,8 +480,8 @@
                         <outlet property="usuarioLabel" destination="Zem-CB-iBO" id="hCm-0R-ZWn"/>
                         <outlet property="view" destination="jaA-qr-TYs" id="BIO-gW-g4F"/>
                         <segue destination="3f9-QY-dJq" kind="show" identifier="moveToEditCant" id="23k-dX-e8l"/>
-                        <segue destination="SbK-Cm-URG" kind="show" identifier="irTotalizar" id="Dz3-Tf-hcp"/>
-                        <segue destination="mmc-Q6-a5G" kind="show" identifier="irBuscarArticulo" id="leX-RQ-1ec"/>
+                        <segue destination="SbK-Cm-URG" kind="showDetail" identifier="irTotalizar" action="showViewController:sender:" id="Dz3-Tf-hcp"/>
+                        <segue destination="mmc-Q6-a5G" kind="showDetail" identifier="irBuscarArticulo" action="showViewController:sender:" id="leX-RQ-1ec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rv1-F9-q9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -657,7 +657,8 @@
                         <outlet property="numeroFacturaText" destination="YvK-gH-sGX" id="yBa-UQ-DTL"/>
                         <outlet property="proveedorLabel" destination="Exs-cQ-V1b" id="hfq-3P-N88"/>
                         <outlet property="usuarioLabel" destination="84J-MP-tDU" id="k5s-rJ-X0J"/>
-                        <segue destination="zxZ-88-Krg" kind="show" identifier="returnToArticle" id="kA7-sZ-3Yd"/>
+                        <segue destination="zxZ-88-Krg" kind="showDetail" identifier="returnToArticle" action="showViewController:sender:" id="kA7-sZ-3Yd"/>
+                        <segue destination="IBI-PM-hr8" kind="showDetail" identifier="backToProveedor" action="showViewController:sender:" id="iWj-LQ-i6i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G47-cb-jLM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -844,7 +845,7 @@
                     </view>
                     <connections>
                         <outlet property="labelText" destination="K8h-lL-fqh" id="1kB-Z0-9ZZ"/>
-                        <segue destination="zxZ-88-Krg" kind="show" identifier="returnToArticle" id="hkn-KT-2eP"/>
+                        <segue destination="zxZ-88-Krg" kind="showDetail" identifier="returnToArticle" action="showViewController:sender:" id="hkn-KT-2eP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s7X-2A-mIB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -953,7 +954,7 @@
                     <connections>
                         <outlet property="queryProveedorInput" destination="dKv-Ib-PWT" id="8hR-17-5XZ"/>
                         <outlet property="tableView" destination="QxK-y0-dee" id="Ste-cD-Fe4"/>
-                        <segue destination="zxZ-88-Krg" kind="show" identifier="returnToArticle" id="7qL-bz-OWb"/>
+                        <segue destination="zxZ-88-Krg" kind="showDetail" identifier="returnToArticle" action="showViewController:sender:" id="7qL-bz-OWb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Psc-fx-Xhw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -962,7 +963,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="D2H-dt-Aqs"/>
-        <segue reference="lu6-LG-lOI"/>
+        <segue reference="kA7-sZ-3Yd"/>
+        <segue reference="iWj-LQ-i6i"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -92,10 +92,19 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 self.articulo.codigo            = data["codigo"].string!
                 self.articulo.auto              = data["auto"].string!
                 self.articulo.contenido_compras = Int(data["contenido_compras"].string!)
-                self.articulo.auto_departamento = data["nombre"].string!
+                self.articulo.auto_departamento = data["auto_departamento"].string!
                 self.articulo.auto_grupo        = data["auto_grupo"].string!
                 self.articulo.auto_subgrupo     = data["auto_subgrupo"].string!
-                //self.articulo.auto_deposito     = data[0]["auto_deposito"].string!
+                self.articulo.auto_deposito     = []
+                
+                // Agregar todos los depositos asociados al articulo a un array
+                for (_,subJson):(String, JSON) in data["auto_deposito"] {
+                    let deposito = [
+                        "auto_deposito": subJson["auto_deposito"].string!,
+                        "default": subJson["default"].bool ?? false
+                        ] as [String : Any]
+                    self.articulo.auto_deposito!.append(deposito)
+                }
                 
                 // mostrar controles de cantidades y medidas
                 self.cantidadLabel.isHidden = false
@@ -231,6 +240,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         if(self.articulo.nombre != nil && self.cantidadLabel.text != "0" && self.tipoPantalla == 1){
             
             self.articulo.cantidad_recibida = self.cantidadLabel.text!
+            self.articulo.cantidad_factura = self.cantidadLabel.text!
             
             // create the alert
             let alert = UIAlertController(title: self.articuloLabel.text!, message: "¿La cantidad recibida es la misma que especifica la factura?", preferredStyle: UIAlertControllerStyle.alert)

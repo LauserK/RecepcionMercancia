@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import Alamofire
 
 class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var proveedor: Proveedor!
@@ -16,7 +17,6 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var articulos = [Article]()
     
-    var deposito = "0000000001"
     var numero_factura = ""
     var isEdit = false
     
@@ -47,37 +47,118 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
         self.performSegue(withIdentifier: "returnToArticle", sender: self)
     }
     
-    func updateAndShowMessage(auto_nuevo: String){
-        ToolsPaseo().consultarDB(id: "open", sql: "UPDATE `sistema_contadores` SET `a_compras` = '\(auto_nuevo)' WHERE a_compras != '' LIMIT 1"){(data) in
+    func actualizarDeposito(){
+        
+        for article in self.articulos {
+            // Get the default deposit of article
+            var auto_deposito: String?
+            for deposito in article.auto_deposito! {
+                if (deposito["default"] as! Bool == true){
+                    auto_deposito = deposito["auto_deposito"] as! String?
+                }
+            }
             
-            self.dismiss(animated: false){
-                // create the alert
-                let alert = UIAlertController(title: "¡MENSAJE!", message: "¡Datos guardados exitosamente!", preferredStyle: UIAlertControllerStyle.alert)
-                
-                alert.addAction(UIAlertAction(title: "ACEPTAR", style: UIAlertActionStyle.default, handler: nil))
-                
-                // show the alert
-                self.present(alert, animated: true, completion: nil)
+            if (auto_deposito == nil && (article.auto_deposito?.count)! > 0) {
+                auto_deposito = article.auto_deposito?[0]["auto_deposito"] as! String?
+            }
+            
+            // Calculate the cant of article
+            let cantidad = Double(article.cantidad_recibida!)! * Double(article.contenido_compras!)
+            
+            let params = [
+                "auto_producto": "\(article.auto!)",
+                "auto_deposito": "\(auto_deposito ?? "0000000001")",
+                "cantidad": "\(cantidad)",
+                "signo": "+"
+            ]
+            
+            ToolsPaseo().consultPOST(path: "/UpdateDeposit", params: params){ data in
+                if(data[0]["error"] == true){
+                    self.dismiss(animated: false){
+                        // create the alert
+                        let alert = UIAlertController(title: "¡MENSAJE!", message: "\(data[0]["description"])", preferredStyle: UIAlertControllerStyle.alert)
+                        
+                        alert.addAction(UIAlertAction(title: "ACEPTAR", style: .cancel, handler: nil))
+                        
+                        // show the alert
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                } else {
+                    self.dismiss(animated: false){
+                        // create the alert
+                        let alert = UIAlertController(title: "¡MENSAJE!", message: "¡Datos guardados exitosamente!", preferredStyle: UIAlertControllerStyle.alert)
+                        
+                        alert.addAction(UIAlertAction(title: "ACEPTAR", style: .default, handler: { action in
+                            
+                            self.performSegue(withIdentifier: "backToProveedor", sender: self)
+                        }))
+                        
+                        // show the alert
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
             }
         }
     }
     
+    
     func procesoGuardado(){
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let fecha = formatter.string(from: date)
-        formatter.dateFormat = "yyyy"
-        let ano = formatter.string(from: date)
-        formatter.dateFormat = "MM"
-        let mes = formatter.string(from: date)
-        let hour = Calendar.current.component(.hour, from: Date())
-        let minutes = Calendar.current.component(.minute, from: Date())
-        let hora = "\(hour):\(minutes)"
-        let device = UIDevice.current.name
+        ToolsPaseo().loadingView(vc: self, msg: "Registrando en la base de datos")
         
-        // MARK.- HERE IS WHERE HAVE TO BE THE PROCEDURE TO REGISTER THE DOCUMENT
-
+        let device_name = UIDevice.current.name
+        
+        // Transform article object list to a article JSON array
+        var object_array = "["
+        var cont = 0
+        
+        for article in self.articulos {
+            let json = JSON(article.toDict)
+            
+            if (cont == self.articulos.count - 1){
+                object_array = "\(object_array)\(json)]"
+            } else {
+                object_array = "\(object_array)\(json),"
+            }
+            
+            cont += 1
+        }
+        // done transform
+        
+        var obj: JSON = [
+            "documento": self.numeroFacturaText.text!,
+            "razon_social": self.proveedor.razon_social!,
+            "dir_fiscal":self.proveedor.dir_fiscal!,
+            "ci_rif":self.proveedor.ci_rif!,
+            "auto_proveedor":self.proveedor.auto!,
+            "codigo_usuario":self.usuario.codigo!,
+            "usuario":self.usuario.nombre!,
+            "device":device_name,
+            "articles": JSON.init(parseJSON: object_array)
+        ]
+        
+        let full_json = JSON(obj.object)
+        
+        let params = [
+            "json": "\(full_json)"
+        ]
+        
+        ToolsPaseo().consultPOST(path: "/AddDocumentAndProdcuts", params: params){ data in
+            if (data[0]["error"] == true){
+                self.dismiss(animated: false){
+                    // create the alert
+                    let alert = UIAlertController(title: "¡MENSAJE!", message: "\(data[0]["description"])", preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    alert.addAction(UIAlertAction(title: "ACEPTAR", style: .cancel, handler: nil))
+                    
+                    // show the alert
+                    self.present(alert, animated: true, completion: nil)
+                }
+            } else {
+                // Actualizar cantidades en el deposito
+                self.actualizarDeposito()
+            }
+        
+        }
     }
     
     @IBAction func guardarRecepcion(_ sender: Any) {
@@ -145,6 +226,11 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
                     destination.cantidad = self.articulo.cantidad_recibida!
                 }
                 
+            }
+        }
+        if segue.identifier == "backToProveedor" {
+            if let destination = segue.destination as? EscogerProveedor {
+                destination.usuario = self.usuario
             }
         }
     }
