@@ -125,7 +125,7 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
         // done transform
         
         var obj: JSON = [
-            "documento": self.numeroFacturaText.text!,
+            "document_number": self.numeroFacturaText.text!,
             "razon_social": self.proveedor.razon_social!,
             "dir_fiscal":self.proveedor.dir_fiscal!,
             "ci_rif":self.proveedor.ci_rif!,
