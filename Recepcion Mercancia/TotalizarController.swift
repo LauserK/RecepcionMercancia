@@ -18,8 +18,11 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
     var articulos = [Article]()
     
     var numero_factura = ""
+    
+    // Si se va a relizar un segue a ArticleController usamos esta variable para detectar si es una edicion
     var isEdit = false
     
+    // Cuando se selecciona un article se actualiza esta variable, por defecto es el primer articulo.
     var selectedArticle = 0
     
     @IBOutlet weak var articleTablewView: UITableView!
@@ -48,7 +51,7 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func actualizarDeposito(){
-        
+        // Actualizar el inventario de los articulos recibidos
         for article in self.articulos {
             // Get the default deposit of article
             var auto_deposito: String?
@@ -125,7 +128,7 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
         // done transform
         
         var obj: JSON = [
-            "document_number": self.numeroFacturaText.text!,
+            "document_number": self.numero_factura,
             "razon_social": self.proveedor.razon_social!,
             "dir_fiscal":self.proveedor.dir_fiscal!,
             "ci_rif":self.proveedor.ci_rif!,
