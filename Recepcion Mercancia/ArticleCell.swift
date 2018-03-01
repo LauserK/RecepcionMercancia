@@ -20,4 +20,23 @@ class ArticleItemCell: UITableViewCell {
         self.codigoLabel.text = ""
         self.cantidadLabel.text = ""
     }
+    
+    var nombre: String? {
+        didSet {
+            nombreLabel.text = nombre
+        }
+    }
+    
+    var codigo: String? {
+        didSet {
+            codigoLabel.text = codigo
+        }
+    }
+    
+    var cantidad: String? {
+        didSet {
+            cantidadLabel.text = cantidad
+        }
+    }
+    
 }

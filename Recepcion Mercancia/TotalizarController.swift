@@ -199,11 +199,12 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // Asignamos valores a las celdas
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let newCell = tableView.dequeueReusableCell(withIdentifier: "articleCell") as! ArticleItemCell
-        newCell.nombreLabel.text = self.articulos[indexPath.row].nombre
-        newCell.cantidadLabel.text = self.articulos[indexPath.row].cantidad_recibida
-        newCell.codigoLabel.text = self.articulos[indexPath.row].codigo
-        return newCell
+        let articleCell = tableView.dequeueReusableCell(withIdentifier: "articleCell") as! ArticleItemCell
+        let article = self.articulos[indexPath.row]
+        articleCell.nombre = article.nombre
+        articleCell.cantidad = article.cantidad_recibida
+        articleCell.codigo = article.codigo
+        return articleCell
     }
     
     
@@ -225,7 +226,6 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
                     destination.articulo = self.articulo
                     destination.cantidad = self.articulo.cantidad_recibida!
                 }
-                
             }
         }
         if segue.identifier == "backToProveedor" {
