@@ -130,12 +130,15 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         
     }
     
+    // Si Obtuvo un codigo desde el scanner
     func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
         self.codigoInput.text = code
-        controller.dismiss(animated: true, completion: nil)
-        if (code != ""){
-            buscarProducto(code: code)
+        controller.dismiss(animated: true){
+            if (code != ""){
+                self.buscarProducto(code: code)
+            }
         }
+        
     }
     
     

@@ -34,7 +34,8 @@ extension Article {
             "auto_grupo": self.auto_grupo!,
             "auto_subgrupo": self.auto_subgrupo!,
             "auto_deposito": "0000000001",
-            "cantidad": Double(self.cantidad_recibida!)!,
+            "cantidad": Double(self.cantidad_factura!)!,
+            "cantidad_factura": self.cantidad_recibida!,
             "empaque": "UNIDAD"
         ]
     }
