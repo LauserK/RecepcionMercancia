@@ -61,5 +61,9 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>UISupportedExternalAccessoryProtocols</key>
+	<array>
+		<string>com.verifone.pmr.barcode</string>
+	</array>
 </dict>
 </plist>

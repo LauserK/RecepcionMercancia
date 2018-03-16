@@ -8,9 +8,10 @@
 
 import UIKit
 import SwiftyJSON
-import BarcodeScanner
+import ExternalAccessory
+import AdyenBarcoder
 
-class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, BarcoderDelegate {
     @IBOutlet weak var usuarioLabel: UILabel!
     @IBOutlet weak var proveedorLabel: UILabel!
     @IBOutlet weak var codigoInput: UITextField!
@@ -38,8 +39,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     // 1 = Ingresar recibido // 2 = ingresar lo que especifica la factura
     var tipoPantalla = 1
     
-    // Instancia del visor de codigo
-    private let controller = BarcodeScannerController()
+    let barcoder = Barcoder.sharedInstance
     
     @IBAction func cantidadMenos(_ sender: Any) {
         if let cantidad = Int(self.cantidadLabel.text!) {
@@ -56,8 +56,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     @IBAction func scanButtonAction(_ sender: Any) {
-        controller.reset(animated: true)
-        present(controller, animated: true, completion: nil)
+        self.barcoder.startSoftScan()
     }
     
     @IBAction func searchButtonAction(_ sender: Any) {
@@ -73,9 +72,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     @IBAction func editarButtonAction(_ sender: Any) {
-        
         self.performSegue(withIdentifier: "moveToEditCant", sender: self)
-        
     }
     
     func buscarProducto(code: String){
@@ -130,27 +127,13 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         
     }
     
-    // Si Obtuvo un codigo desde el scanner
-    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
-        self.codigoInput.text = code
-        controller.dismiss(animated: true){
-            if (code != ""){
-                self.buscarProducto(code: code)
-            }
-        }
-        
-    }
-    
-    
     // Cuando damos tap en el view se quita el teclado
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
     override func viewDidLoad() {
-        controller.codeDelegate = self
-        controller.errorDelegate = self
-        controller.dismissalDelegate = self
+        barcoder.delegate = self
         
         unidadMedidaPicker.delegate = self
         unidadMedidaPicker.dataSource = self
@@ -166,18 +149,6 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         self.titulo2Label.isHidden = true
         self.btnEditarCantidad.isHidden = true
         self.unidadLabel.isHidden = true
-        
-        // textos español
-        BarcodeScanner.Title.text = NSLocalizedString("ESCANER", comment: "")
-        BarcodeScanner.CloseButton.text = NSLocalizedString("Cerrar", comment: "")
-        BarcodeScanner.SettingsButton.text = NSLocalizedString("Configuraciones", comment: "")
-        BarcodeScanner.Info.text = NSLocalizedString(
-            "Cuadra el codigo de barra para ser escaneado", comment: "")
-        BarcodeScanner.Info.loadingText = NSLocalizedString("Buscando...", comment: "")
-        BarcodeScanner.Info.notFoundText = NSLocalizedString("Producto no ecnontrado.", comment: "")
-        BarcodeScanner.Info.settingsText = NSLocalizedString(
-            "Para escanear debes de habilitar el acceso a la camara.", comment: "")
-        
         
         // Buscar unidades de medida
         /*
@@ -274,9 +245,15 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
             self.irSiguiente()
         
         }
-        
-        
-        
+    }
+    
+    // Barcode
+    func didScan(barcode: Barcode) {
+        // Al escanear insertamos el codigo en el input y ejecutamos la busqueda
+        let text = "\(barcode.text)"
+        self.codigoInput.text = text
+        self.barcoder.stopSoftScan()
+        self.buscarProducto(code: self.codigoInput.text!)
     }
     
     // PICKER VIEW
@@ -331,24 +308,6 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         }
     }
 }
-
-extension ArticuloController: BarcodeScannerCodeDelegate {
-}
-
-extension ArticuloController: BarcodeScannerErrorDelegate {
-    
-    func barcodeScanner(_ controller: BarcodeScannerController, didReceiveError error: Error) {
-        print(error)
-    }
-}
-
-extension ArticuloController: BarcodeScannerDismissalDelegate {
-    
-    func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
-        controller.dismiss(animated: true, completion: nil)
-    }
-}
-
 
 class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // Vista para buscar proveedor y selecionar el proveedor

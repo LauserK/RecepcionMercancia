@@ -20,12 +20,11 @@
 		FA78679F20079CBA00BB4D12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA78679E20079CBA00BB4D12 /* Assets.xcassets */; };
 		FA7867A220079CBA00BB4D12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA7867A020079CBA00BB4D12 /* LaunchScreen.storyboard */; };
 		FA7867AA20079DEA00BB4D12 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7867A920079DEA00BB4D12 /* Alamofire.framework */; };
+		FA96F936205BE3F10064FAC3 /* AdyenBarcoder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA96F935205BE3F00064FAC3 /* AdyenBarcoder.framework */; };
 		FAAE9D592013E88A00E11710 /* TecladoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D582013E88A00E11710 /* TecladoController.swift */; };
 		FAAE9D5B201A7F8900E11710 /* TotalizarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D5A201A7F8800E11710 /* TotalizarController.swift */; };
 		FAAE9D5D201A856A00E11710 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D5C201A856A00E11710 /* ArticleCell.swift */; };
-		FAAE9D61201B564C00E11710 /* FontAwesome_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAAE9D60201B564C00E11710 /* FontAwesome_swift.framework */; };
 		FADDF6722010D6C800D046C8 /* ArticuloController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF6712010D6C800D046C8 /* ArticuloController.swift */; };
-		FADDF67C2010F78300D046C8 /* BarcodeScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FADDF67B2010F78300D046C8 /* BarcodeScanner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +46,7 @@
 		FA7867A120079CBA00BB4D12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA7867A320079CBA00BB4D12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA7867A920079DEA00BB4D12 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		FA96F935205BE3F00064FAC3 /* AdyenBarcoder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdyenBarcoder.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/AdyenBarcoder/AdyenBarcoder.framework"; sourceTree = "<group>"; };
 		FAAE9D582013E88A00E11710 /* TecladoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TecladoController.swift; sourceTree = "<group>"; };
 		FAAE9D5A201A7F8800E11710 /* TotalizarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalizarController.swift; sourceTree = "<group>"; };
 		FAAE9D5C201A856A00E11710 /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
@@ -61,8 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAAE9D61201B564C00E11710 /* FontAwesome_swift.framework in Frameworks */,
-				FADDF67C2010F78300D046C8 /* BarcodeScanner.framework in Frameworks */,
+				FA96F936205BE3F10064FAC3 /* AdyenBarcoder.framework in Frameworks */,
 				FA3F771F200CD0C500A118F7 /* SwiftyJSON.framework in Frameworks */,
 				FA7867AA20079DEA00BB4D12 /* Alamofire.framework in Frameworks */,
 				4363916CE309A3B71A4F82AF /* Pods_Recepcion_Mercancia.framework in Frameworks */,
@@ -75,6 +74,7 @@
 		17C9319178D32A085A319FB9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA96F935205BE3F00064FAC3 /* AdyenBarcoder.framework */,
 				FA0805AF20362152001DFB53 /* SWXMLHash.framework */,
 				FAAE9D60201B564C00E11710 /* FontAwesome_swift.framework */,
 				FAAE9D5E201B556F00E11710 /* FontAwesome_swift.framework */,
@@ -263,16 +263,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Recepcion Mercancia/Pods-Recepcion Mercancia-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AdyenBarcoder/AdyenBarcoder.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework",
-				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AdyenBarcoder.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BarcodeScanner.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

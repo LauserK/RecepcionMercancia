@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double BarcodeScannerVersionNumber;
-FOUNDATION_EXPORT const unsigned char BarcodeScannerVersionString[];
+FOUNDATION_EXPORT double AdyenBarcoderVersionNumber;
+FOUNDATION_EXPORT const unsigned char AdyenBarcoderVersionString[];
 

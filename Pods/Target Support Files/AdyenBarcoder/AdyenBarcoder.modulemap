@@ -1,0 +1,6 @@
+framework module AdyenBarcoder {
+  umbrella header "AdyenBarcoder-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,21 +1,18 @@
 PODS:
+  - AdyenBarcoder (1.2.4)
   - Alamofire (4.5.1)
-  - BarcodeScanner (2.0.0)
-  - FontAwesome.swift (1.0.0)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - AdyenBarcoder (= 1.2.4)
   - Alamofire
-  - BarcodeScanner (= 2.0.0)
-  - FontAwesome.swift (= 1.0.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
+  AdyenBarcoder: 756a030674d6079a6151f3cfd9d1abfeda94caeb
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  BarcodeScanner: 266ab4b479d407b74bc4b473fa5020b4523ad9e3
-  FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 270ef4b474668e6e54d714cb7e8bb34688ff23e0
+PODFILE CHECKSUM: ab101ce8e70e6a7817eb2bf3911151e036cf856e
 
 COCOAPODS: 1.3.1
