@@ -20,6 +20,8 @@ class Article {
     var cantidad_recibida: String?
     var cantidad_factura: String?
     var auto_medida: String?
+    var auto_tasa: String?
+    var tasa: String?
 
 }
 
@@ -36,7 +38,9 @@ extension Article {
             "auto_deposito": "0000000001",
             "cantidad": Double(self.cantidad_factura!)!,
             "cantidad_factura": self.cantidad_recibida!,
-            "empaque": "UNIDAD"
+            "empaque": "UNIDAD",
+            "auto_tasa": self.auto_tasa ?? "0000000002",
+            "tasa": self.tasa ?? "12.00"
         ]
     }
 }

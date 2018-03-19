@@ -201,7 +201,6 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
             
         }))
         alert.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler: { action in
-            
             self.performSegue(withIdentifier: "irTotalizar", sender: self)
         }))
         
@@ -211,7 +210,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     @IBAction func handleNext(_ sender: Any) {
-        if(self.articulo.nombre != nil && self.cantidadLabel.text != "0" && self.tipoPantalla == 1){
+        if(self.articulo != nil && self.cantidadLabel.text != "0" && self.tipoPantalla == 1){
             
             self.articulo.cantidad_recibida = self.cantidadLabel.text!
             self.articulo.cantidad_factura = self.cantidadLabel.text!
@@ -239,7 +238,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
             self.present(alert, animated: true, completion: nil)
         }
         
-        if (self.articulo.nombre != nil && self.cantidadLabel.text != "0" && self.tipoPantalla == 2) {
+        if (self.articulo != nil && self.cantidadLabel.text != "0" && self.tipoPantalla == 2) {
             
             self.articulo.cantidad_factura = self.cantidadLabel.text!
             self.irSiguiente()
