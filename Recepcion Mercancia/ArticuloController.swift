@@ -63,11 +63,13 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         // Verificar tipo de busqueda
         // Si tiene un '*' en el inicio busca por nombre
         // Si no tiene un '*' busca por el codigo exacto
-        if(self.codigoInput.text![0] == "*"){
-            self.performSegue(withIdentifier: "irBuscarArticulo", sender: self)
-        
-        } else {
-            buscarProducto(code: self.codigoInput.text!)
+        if (self.codigoInput.text!.characters.count > 0){
+            if(self.codigoInput.text![0] == "*"){
+                self.performSegue(withIdentifier: "irBuscarArticulo", sender: self)
+                
+            } else {
+                buscarProducto(code: self.codigoInput.text!)
+            }
         }
     }
     
@@ -111,6 +113,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 self.titulo2Label.isHidden = false
                 self.btnEditarCantidad.isHidden = false
                 self.unidadLabel.isHidden = false
+                self.articuloLabel.textColor = UIColor.black
                 
                 // Mostramos los datos
                 self.articuloLabel.text = self.articulo.nombre!
@@ -119,8 +122,17 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 
             } else {
                 // Si hubo algun error en la consulta mostramos el error
-                self.articuloLabel.text = "\(data["erroDescription"])"
-                self.articuloLabel.textColor = UIColor.red
+                
+                // create the alert
+                let alert = UIAlertController(title: "¡ERROR!", message: "¡El artículo que estás buscando no existe!", preferredStyle: UIAlertControllerStyle.alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                
+                // show the alert
+                self.present(alert, animated: true, completion: nil)
+                
+               // self.articuloLabel.text = "\(data["erroDescription"])"
+               // self.articuloLabel.textColor = UIColor.red
             }
             
         }
