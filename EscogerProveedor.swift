@@ -31,6 +31,7 @@ class EscogerProveedor: UIViewController {
     @IBAction func seguirSinOCButtonAction(_ sender: Any) {
         // Al dar click a Segir sin Orden de Compra vamos a la vista de articulo
         if (self.proveedor != nil){
+            Proveedor().saveProvider(proveedor: self.proveedor!)
             self.performSegue(withIdentifier: "moveToArticle", sender: self)
         } else {
             // create the alert

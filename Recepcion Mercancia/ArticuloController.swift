@@ -195,6 +195,8 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         // Agregar el articulo al array de recibidos
         self.articulos.append(self.articulo)
         
+        Article().saveArticle(articulo: self.articulo)
+        
         // create the alert
         let alert = UIAlertController(title: "¡ARTICULO AGREGADO EXITOSAMENTE!", message: "¿Existen más artículos por recibir?", preferredStyle: UIAlertControllerStyle.alert)
         

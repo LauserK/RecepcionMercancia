@@ -169,6 +169,10 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if (self.numero_factura != "" && self.numero_factura.characters.count > 2) {
             self.procesoGuardado()
+            
+            //Eliminar locales
+            Article().deleteArticles()
+            Proveedor().deleteProvider()
         } else {
             // create the alert
             let alert = UIAlertController(title: "¡ERROR!", message: "¡NUMERO FACTURA VACIO!", preferredStyle: UIAlertControllerStyle.alert)
