@@ -74,7 +74,7 @@ extension Article {
                     article.auto_deposito     = []
                     article.cantidad_recibida = "\(data.value(forKey: "cantidad_recibida")!)"
                     article.cantidad_factura  = "\(data.value(forKey: "cantidad_factura")!)"
-                    
+                    article.tasa              = "\(data.value(forKey: "tasa")!)"
                     articles.append(article)
                 }
             }
@@ -102,6 +102,7 @@ extension Article {
         article.auto_subgrupo     = articulo.auto_subgrupo!
         article.cantidad_recibida = articulo.cantidad_recibida!
         article.cantidad_factura  = articulo.cantidad_factura!
+        article.tasa              = articulo.tasa!
         
         do {
             try managedObjectContext.save()

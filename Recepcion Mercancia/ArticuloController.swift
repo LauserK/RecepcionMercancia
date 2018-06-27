@@ -94,6 +94,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 self.articulo.auto_departamento = data["auto_departamento"].string!
                 self.articulo.auto_grupo        = data["auto_grupo"].string!
                 self.articulo.auto_subgrupo     = data["auto_subgrupo"].string!
+                self.articulo.tasa              = String(data["tasa"].int!)
                 self.articulo.auto_deposito     = []
                 
                 // Agregar todos los depositos asociados al articulo a un array
