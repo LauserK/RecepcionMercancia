@@ -328,9 +328,14 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
     var searchQueryText = ""
     var articulos = [Article]()
     var articulos_lista = [Article]()
+    var articulosMov = [ArticleMov]()
     var articulo: Article!
     var proveedor: Proveedor!
     var usuario: User!
+    
+    // 1 = Recepcion // 2 = Movimiento
+    var tipoPantalla = "1"
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var queryProveedorInput: UITextField!
@@ -409,7 +414,13 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func elegirButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "returnToArticle", sender: self)
+        
+        if (tipoPantalla == "1"){
+            self.performSegue(withIdentifier: "returnToArticle", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "returnToMovimiento", sender: self)
+        }
+        
     }
     
     // Preprara
@@ -419,6 +430,14 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
                 destination.usuario = self.usuario
                 destination.proveedor = self.proveedor
                 destination.articulos = self.articulos_lista
+                destination.articulo = self.articulo
+            }
+        }
+        
+        if segue.identifier == "returnToMovimiento" {
+            if let destination = segue.destination as? ArticleMovimientoViewController {
+                destination.usuario = self.usuario
+                destination.articulosMov = self.articulosMov
                 destination.articulo = self.articulo
             }
         }

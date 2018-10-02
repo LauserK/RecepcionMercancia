@@ -70,7 +70,7 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
             
             let params = [
                 "auto_producto": "\(article.auto!)",
-                "auto_deposito": "\(auto_deposito ?? "0000000001")",
+                "auto_deposito": "\(auto_deposito ?? "0000000002")",
                 "cantidad": "\(cantidad)",
                 "signo": "+"
             ]

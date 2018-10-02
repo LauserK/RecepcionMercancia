@@ -44,14 +44,16 @@ class ViewController: UIViewController {
                 Article().deleteArticles()
                 
                 // REALIZAR EL SEGUE A LA SIGUIENTE PANTALLA (SELECIONAR PROVEEDOR)
-                self.performSegue(withIdentifier: "irProveedor", sender: self)
+                //self.performSegue(withIdentifier: "irProveedor", sender: self)
+                self.performSegue(withIdentifier: "irMenu", sender: self)
             }))
             
             // show the alert
             self.present(alert, animated: true, completion: nil)
         } else {
             // REALIZAR EL SEGUE A LA SIGUIENTE PANTALLA (SELECIONAR PROVEEDOR)
-            self.performSegue(withIdentifier: "irProveedor", sender: self)
+            //self.performSegue(withIdentifier: "irProveedor", sender: self)
+            self.performSegue(withIdentifier: "irMenu", sender: self)
         
         }
         
@@ -93,6 +95,12 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "irMenu" {
+            if let destination = segue.destination as? MenuViewController {
+                destination.usuario = self.usuario
+            }
+        
+        }
         if segue.identifier == "irProveedor" {
             if let destination = segue.destination as? EscogerProveedor {
                 destination.usuario = self.usuario

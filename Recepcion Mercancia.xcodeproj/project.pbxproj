@@ -25,6 +25,11 @@
 		FA78679F20079CBA00BB4D12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA78679E20079CBA00BB4D12 /* Assets.xcassets */; };
 		FA7867A220079CBA00BB4D12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA7867A020079CBA00BB4D12 /* LaunchScreen.storyboard */; };
 		FA7867AA20079DEA00BB4D12 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7867A920079DEA00BB4D12 /* Alamofire.framework */; };
+		FA8D17C321628F6D00CCA3A4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8D17C221628F6D00CCA3A4 /* MenuViewController.swift */; };
+		FA8D17C52162B7D900CCA3A4 /* ArticleMovimientoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8D17C42162B7D900CCA3A4 /* ArticleMovimientoViewController.swift */; };
+		FA8D17C72162B9EF00CCA3A4 /* ArticleMov.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8D17C62162B9EF00CCA3A4 /* ArticleMov.swift */; };
+		FA8D17C92162C99200CCA3A4 /* Warehouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8D17C82162C99200CCA3A4 /* Warehouse.swift */; };
+		FA8D17CB2162E54B00CCA3A4 /* TotalizarMovViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8D17CA2162E54B00CCA3A4 /* TotalizarMovViewController.swift */; };
 		FA96F936205BE3F10064FAC3 /* AdyenBarcoder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA96F935205BE3F00064FAC3 /* AdyenBarcoder.framework */; };
 		FAAE9D592013E88A00E11710 /* TecladoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D582013E88A00E11710 /* TecladoController.swift */; };
 		FAAE9D5B201A7F8900E11710 /* TotalizarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D5A201A7F8800E11710 /* TotalizarController.swift */; };
@@ -58,6 +63,11 @@
 		FA7867A120079CBA00BB4D12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA7867A320079CBA00BB4D12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA7867A920079DEA00BB4D12 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		FA8D17C221628F6D00CCA3A4 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		FA8D17C42162B7D900CCA3A4 /* ArticleMovimientoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleMovimientoViewController.swift; sourceTree = "<group>"; };
+		FA8D17C62162B9EF00CCA3A4 /* ArticleMov.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleMov.swift; path = models/ArticleMov.swift; sourceTree = "<group>"; };
+		FA8D17C82162C99200CCA3A4 /* Warehouse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Warehouse.swift; sourceTree = "<group>"; };
+		FA8D17CA2162E54B00CCA3A4 /* TotalizarMovViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalizarMovViewController.swift; sourceTree = "<group>"; };
 		FA96F935205BE3F00064FAC3 /* AdyenBarcoder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdyenBarcoder.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/AdyenBarcoder/AdyenBarcoder.framework"; sourceTree = "<group>"; };
 		FAAE9D582013E88A00E11710 /* TecladoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TecladoController.swift; sourceTree = "<group>"; };
 		FAAE9D5A201A7F8800E11710 /* TotalizarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TotalizarController.swift; sourceTree = "<group>"; };
@@ -124,6 +134,8 @@
 				FA0805B4203B63FD001DFB53 /* User.swift */,
 				FA0805B6203B718B001DFB53 /* Proveedor.swift */,
 				FA0805B8203DBFDF001DFB53 /* Article.swift */,
+				FA8D17C62162B9EF00CCA3A4 /* ArticleMov.swift */,
+				FA8D17C82162C99200CCA3A4 /* Warehouse.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -172,6 +184,9 @@
 				FADDF6712010D6C800D046C8 /* ArticuloController.swift */,
 				FAAE9D582013E88A00E11710 /* TecladoController.swift */,
 				FAAE9D5A201A7F8800E11710 /* TotalizarController.swift */,
+				FA8D17C221628F6D00CCA3A4 /* MenuViewController.swift */,
+				FA8D17C42162B7D900CCA3A4 /* ArticleMovimientoViewController.swift */,
+				FA8D17CA2162E54B00CCA3A4 /* TotalizarMovViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -211,7 +226,7 @@
 				TargetAttributes = {
 					FA78679320079CBA00BB4D12 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 3FWNGW7RR4;
+						DevelopmentTeam = 956S3QCTGA;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -321,7 +336,12 @@
 				FADDF6722010D6C800D046C8 /* ArticuloController.swift in Sources */,
 				FA0805B5203B63FD001DFB53 /* User.swift in Sources */,
 				FA020253207FBCCF001E10A1 /* ProviderCore+CoreDataClass.swift in Sources */,
+				FA8D17C321628F6D00CCA3A4 /* MenuViewController.swift in Sources */,
+				FA8D17CB2162E54B00CCA3A4 /* TotalizarMovViewController.swift in Sources */,
+				FA8D17C52162B7D900CCA3A4 /* ArticleMovimientoViewController.swift in Sources */,
+				FA8D17C92162C99200CCA3A4 /* Warehouse.swift in Sources */,
 				FAAE9D5B201A7F8900E11710 /* TotalizarController.swift in Sources */,
+				FA8D17C72162B9EF00CCA3A4 /* ArticleMov.swift in Sources */,
 				FA78679820079CBA00BB4D12 /* AppDelegate.swift in Sources */,
 				FA020245207FA605001E10A1 /* Model.xcdatamodeld in Sources */,
 				FA3F7723200D322400A118F7 /* EscogerProveedor.swift in Sources */,
@@ -450,7 +470,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3FWNGW7RR4;
+				DEVELOPMENT_TEAM = 956S3QCTGA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/BarcodeScanner",
@@ -459,7 +479,7 @@
 				INFOPLIST_FILE = "Recepcion Mercancia/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.paseo78.Recepcion-Mercancia";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.paseo78.Recepcion-Mercancia5";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -471,7 +491,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3FWNGW7RR4;
+				DEVELOPMENT_TEAM = 956S3QCTGA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/BarcodeScanner",
@@ -480,7 +500,7 @@
 				INFOPLIST_FILE = "Recepcion Mercancia/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.paseo78.Recepcion-Mercancia";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.paseo78.Recepcion-Mercancia5";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
