@@ -11,6 +11,7 @@ import UIKit
 class TotalizarMovViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var listTable: UITableView!
+    @IBOutlet weak var headerView: UIView!
     
     var usuario: User!
     var articuloMov: ArticleMov!
@@ -26,6 +27,24 @@ class TotalizarMovViewController: UIViewController, UITableViewDelegate, UITable
         listTable.dataSource = self
         
         self.userLabel.text = usuario.nombre!
+        
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTapHeader(sender:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        headerView.addGestureRecognizer(doubleTapGesture)
+    }
+    
+    func handleDoubleTapHeader(sender: UITapGestureRecognizer){
+        // create the alert
+        let alert = UIAlertController(title: "¡ALERTA!", message: "¿DESEAS REGRESAR AL MENU PRINCIPAL?", preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "SI", style: UIAlertActionStyle.destructive, handler: { action in
+            self.performSegue(withIdentifier: "backToMenu", sender: self)
+        }))
+        alert.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -97,8 +116,7 @@ class TotalizarMovViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func addAnotherAction(_ sender: Any) {
         self.performSegue(withIdentifier: "irArticleMov", sender: self)
-    }
-    
+    }    
 
     // Tabla
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

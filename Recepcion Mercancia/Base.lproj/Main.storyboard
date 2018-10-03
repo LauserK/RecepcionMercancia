@@ -563,6 +563,7 @@
                         <color key="backgroundColor" red="1" green="0.81568627449999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="headerView" destination="SDd-OX-JHd" id="1TK-0a-s53"/>
                         <outlet property="listTable" destination="VPm-XL-UoP" id="7Fj-eB-8E3"/>
                         <outlet property="userLabel" destination="XNs-MB-ypG" id="znV-XE-LMN"/>
                         <segue destination="yN0-3S-evh" kind="showDetail" identifier="irArticleMov" id="TnS-vo-7ae"/>
@@ -1484,12 +1485,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Hhj-r2-fGT"/>
-        <segue reference="Dz3-Tf-hcp"/>
-        <segue reference="kA7-sZ-3Yd"/>
-        <segue reference="iWj-LQ-i6i"/>
+        <segue reference="MSG-PH-0kD"/>
         <segue reference="TnS-vo-7ae"/>
         <segue reference="1px-tG-gy3"/>
         <segue reference="p3u-Oj-uLK"/>
+        <segue reference="iWj-LQ-i6i"/>
+        <segue reference="Dz3-Tf-hcp"/>
+        <segue reference="kA7-sZ-3Yd"/>
     </inferredMetricsTieBreakers>
 </document>
