@@ -29,6 +29,7 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var numeroFacturaText: UITextField!
     @IBOutlet weak var usuarioLabel: UILabel!
     @IBOutlet weak var proveedorLabel: UILabel!
+    @IBOutlet weak var headerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,25 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
         // Mostramos datos de usuario y proveedor
         self.usuarioLabel.text = self.usuario.nombre
         self.proveedorLabel.text = self.proveedor.razon_social!
+        
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTapHeader(sender:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        headerView.addGestureRecognizer(doubleTapGesture)
+    }
+    
+    // Double tap header go to menu
+    func handleDoubleTapHeader(sender: UITapGestureRecognizer){
+        // create the alert
+        let alert = UIAlertController(title: "¡ALERTA!", message: "¿DESEAS REGRESAR AL MENU PRINCIPAL?", preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "SI", style: UIAlertActionStyle.destructive, handler: { action in
+            self.performSegue(withIdentifier: "irMenu", sender: self)
+        }))
+        alert.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
     
     // Cuando damos tap en el view se quita el teclado
@@ -93,7 +113,7 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
                         
                         alert.addAction(UIAlertAction(title: "ACEPTAR", style: .default, handler: { action in
                             
-                            self.performSegue(withIdentifier: "backToProveedor", sender: self)
+                            self.performSegue(withIdentifier: "irMenu", sender: self)
                         }))
                         
                         // show the alert
@@ -237,6 +257,12 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         if segue.identifier == "backToProveedor" {
             if let destination = segue.destination as? EscogerProveedor {
+                destination.usuario = self.usuario
+            }
+        }
+        
+        if segue.identifier == "irMenu" {
+            if let destination = segue.destination as? MenuViewController {
                 destination.usuario = self.usuario
             }
         }

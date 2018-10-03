@@ -1156,11 +1156,13 @@
                     </view>
                     <connections>
                         <outlet property="articleTablewView" destination="RCp-7A-QMy" id="bKs-BB-EWf"/>
+                        <outlet property="headerView" destination="kTI-j1-Yw2" id="xo4-NB-bAq"/>
                         <outlet property="numeroFacturaText" destination="YvK-gH-sGX" id="yBa-UQ-DTL"/>
                         <outlet property="proveedorLabel" destination="Exs-cQ-V1b" id="hfq-3P-N88"/>
                         <outlet property="usuarioLabel" destination="84J-MP-tDU" id="k5s-rJ-X0J"/>
                         <segue destination="zxZ-88-Krg" kind="showDetail" identifier="returnToArticle" action="showViewController:sender:" id="kA7-sZ-3Yd"/>
                         <segue destination="IBI-PM-hr8" kind="showDetail" identifier="backToProveedor" action="showViewController:sender:" id="iWj-LQ-i6i"/>
+                        <segue destination="m2U-h9-djE" kind="showDetail" identifier="irMenu" id="Hhj-r2-fGT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G47-cb-jLM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1482,10 +1484,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="uje-uJ-i2e"/>
-        <segue reference="iWj-LQ-i6i"/>
+        <segue reference="Hhj-r2-fGT"/>
         <segue reference="Dz3-Tf-hcp"/>
-        <segue reference="lu6-LG-lOI"/>
+        <segue reference="kA7-sZ-3Yd"/>
+        <segue reference="iWj-LQ-i6i"/>
         <segue reference="TnS-vo-7ae"/>
         <segue reference="1px-tG-gy3"/>
         <segue reference="p3u-Oj-uLK"/>

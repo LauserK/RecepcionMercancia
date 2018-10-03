@@ -26,7 +26,6 @@ class ViewController: UIViewController {
     var provider: Proveedor?
     
     // Verificar si existe una recepcion pendiente
-    
     func verificarDatos(){
         self.articles = Article().getArticlesDevice()
         self.provider = Proveedor().getProvider()
@@ -54,7 +53,6 @@ class ViewController: UIViewController {
             // REALIZAR EL SEGUE A LA SIGUIENTE PANTALLA (SELECIONAR PROVEEDOR)
             //self.performSegue(withIdentifier: "irProveedor", sender: self)
             self.performSegue(withIdentifier: "irMenu", sender: self)
-        
         }
         
         
