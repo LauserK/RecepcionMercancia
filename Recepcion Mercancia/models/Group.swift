@@ -1,15 +1,14 @@
 //
-//  Warehouse.swift
+//  Group.swift
 //  Recepcion Mercancia
 //
-//  Created by Macbook on 1/10/18.
+//  Created by Macbook on 2/10/18.
 //  Copyright © 2018 Grupo Paseo. All rights reserved.
 //
 
 import Foundation
 
-class Warehouse {
-    var name: String?
+class Grupo {
+    var nombre: String?
     var auto: String?
-    var quantity: Double?
 }

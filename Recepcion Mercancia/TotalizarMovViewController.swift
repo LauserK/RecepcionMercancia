@@ -41,9 +41,60 @@ class TotalizarMovViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     @IBAction func finishAction(_ sender: Any) {
-        //Save
         
+        ToolsPaseo().loadingView(vc: self, msg: "Registrando en la base de datos")
+        var cont = 1
+        for article in articulosMov {
+            let params = [
+                "auto_producto": "\(article.article!.auto!)",
+                "auto_deposito": "\(article.deposito_origen!.auto!)",
+                "cantidad": "\(article.total!)",
+                "signo": "-"
+            ]
+            
+            ToolsPaseo().consultPOST(path: "/UpdateDeposit", params: params){ data in
+                if(data[0]["error"] == true){
+                    self.dismiss(animated: false){
+                        print("Error: \(article.article?.nombre!)")
+                    }
+                } else {
+                    let params = [
+                        "auto_producto": "\(article.article!.auto!)",
+                        "auto_deposito": "\(article.deposito_destino!.auto!)",
+                        "cantidad": "\(article.total!)",
+                        "signo": "+"
+                    ]
+                    
+                    ToolsPaseo().consultPOST(path: "/UpdateDeposit", params: params){ data in
+                        if(data[0]["error"] == true){
+                            self.dismiss(animated:true){
+                                print("Error: \(article.article?.nombre!)")
+                            }
+                        } else {
+                            if cont == self.articulosMov.count {
+                                self.dismiss(animated:false){
+                                    // create the alert
+                                    let alert = UIAlertController(title: "¡MENSAJE!", message: "¡Datos guardados exitosamente!", preferredStyle: UIAlertControllerStyle.alert)
+                                    
+                                    alert.addAction(UIAlertAction(title: "ACEPTAR", style: .default, handler: { action in
+                                        
+                                        self.performSegue(withIdentifier: "backToMenu", sender: self)
+                                    }))
+                                    
+                                    // show the alert
+                                    self.present(alert, animated: true, completion: nil)
+                                }
+                            }
+                            
+                            cont = cont + 1
+                        }
+                    }
+                }
+            }
+            
+        }
     }
+    
     @IBAction func addAnotherAction(_ sender: Any) {
         self.performSegue(withIdentifier: "irArticleMov", sender: self)
     }
@@ -84,6 +135,12 @@ class TotalizarMovViewController: UIViewController, UITableViewDelegate, UITable
                 if isEdit {
                     destination.articuloMov = articuloMov
                 }
+            }
+        }
+        
+        if segue.identifier == "backToMenu" {
+            if let destination = segue.destination as? MenuViewController {
+                destination.usuario = self.usuario
             }
         }
     }

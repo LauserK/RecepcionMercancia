@@ -22,6 +22,8 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
     @IBOutlet weak var unityCant: UILabel!
     @IBOutlet weak var totalCant: UILabel!
     @IBOutlet weak var packageQuantity: UILabel!
+    @IBOutlet weak var quantityOrigen: UILabel!
+    @IBOutlet weak var quantityDestino: UILabel!
     
     var selected: UILabel!
     
@@ -92,7 +94,7 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
                 self.articulo.auto_departamento = data["auto_departamento"].string!
                 self.articulo.auto_grupo        = data["auto_grupo"].string!
                 self.articulo.auto_subgrupo     = data["auto_subgrupo"].string!
-                self.articulo.tasa              = String(data["tasa"].int!)
+                self.articulo.tasa              = String(data["tasa"].int ?? 0)
                 self.articulo.auto_deposito     = []
                 
                 if self.articuloMov == nil {
@@ -109,13 +111,8 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
                     self.articulo.auto_deposito!.append(deposito)
                     let warehouse = Warehouse()
                     warehouse.auto = subJson["auto_deposito"].string!
-                    if warehouse.auto == "0000000001"{
-                        warehouse.name = "ALMACEN VENTAS"
-                    } else if warehouse.auto == "0000000002"{
-                        warehouse.name = "ALMACEN PRINCIPAL"
-                    } else {
-                        warehouse.name = "\(warehouse.auto!)"
-                    }
+                    warehouse.name = subJson["name"].string!
+                    warehouse.quantity = subJson["cantidad"].double!
                     self.depositos.append(warehouse)
                 }
             
@@ -153,50 +150,49 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
     }
     
     
-    @IBAction func nextArticle(_ sender: Any) {
-        
-        if articulo != nil {
-            articuloMov.concepto         = "APP MOVIMIENTO INVENTARIO"
-            articuloMov.cantidad         = Double(packageCant.text!) ?? 0.00
-            articuloMov.cantidadUnidad   = Int(unityCant.text!) ?? 0
-            articuloMov.total            = Double(totalCant.text!) ?? 0.00
-            articulosMov.append(articuloMov)
-            
-            print("Article--> \(articuloMov.article!.nombre!)")
-            print("concepto--> \(articuloMov.concepto!)")
-            print("deposito_origen--> \(articuloMov.deposito_origen!)")
-            print("deposito_destino--> \(articuloMov.deposito_destino!)")
-            print("cantidad--> \(articuloMov.cantidad!)")
-            print("cantidadUnidad--> \(articuloMov.cantidadUnidad!)")
-            print("total--> \(articuloMov.total!)")
-            
+    @IBAction func nextArticle(_ sender: Any) {        
+        if (Double(totalCant.text!)! > (articuloMov.deposito_origen?.quantity!)!){
             // create the alert
-            let alert = UIAlertController(title: "¡ARTICULO AGREGADO EXITOSAMENTE!", message: "¿Existen más artículos por movilizar?", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "¡ERROR!", message: "EXISTENCIA POR DEBAJO DE LO ESPECIFICADO", preferredStyle: UIAlertControllerStyle.alert)
             
             
             // add the actions (buttons)
-            alert.addAction(UIAlertAction(title: "SI", style: UIAlertActionStyle.default, handler: { action in
-                
-                // Agregar siguiente articulo
-                if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ArticleMov") as? ArticleMovimientoViewController
-                {
-                    vc.usuario = self.usuario
-                    vc.articulosMov = self.articulosMov
-                    self.present(vc, animated: true, completion: nil)
-                }
-                
-            }))
-            alert.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler: { action in
-                self.performSegue(withIdentifier: "irTotalizarMovimiento", sender: self)
-            }))
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             
             // show the alert
             self.present(alert, animated: true, completion: nil)
-
+        } else {
+            if articulo != nil {
+                articuloMov.concepto         = "APP MOVIMIENTO INVENTARIO"
+                articuloMov.cantidad         = Double(packageCant.text!) ?? 0.00
+                articuloMov.cantidadUnidad   = Int(unityCant.text!) ?? 0
+                articuloMov.total            = Double(totalCant.text!) ?? 0.00
+                articulosMov.append(articuloMov)
+                
+                // create the alert
+                let alert = UIAlertController(title: "¡ARTICULO AGREGADO EXITOSAMENTE!", message: "¿Existen más artículos por movilizar?", preferredStyle: UIAlertControllerStyle.alert)
+                
+                
+                // add the actions (buttons)
+                alert.addAction(UIAlertAction(title: "SI", style: UIAlertActionStyle.default, handler: { action in
+                    
+                    // Agregar siguiente articulo
+                    if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ArticleMov") as? ArticleMovimientoViewController
+                    {
+                        vc.usuario = self.usuario
+                        vc.articulosMov = self.articulosMov
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                    
+                }))
+                alert.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler: { action in
+                    self.performSegue(withIdentifier: "irTotalizarMovimiento", sender: self)
+                }))
+                
+                // show the alert
+                self.present(alert, animated: true, completion: nil)
+            }
         }
-        
-        
-        
     }
     
     @IBAction func previus(_ sender: Any) {
@@ -211,6 +207,8 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
             } else {
                 buscarProducto(code: barcode.text!)
             }
+        } else {
+            self.performSegue(withIdentifier: "irBuscarArticulo", sender: self)
         }
     }
     
@@ -222,7 +220,6 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
             }
         } else {
             let cantidad = Double(self.selected.text!)!
-            
             if (cantidad > 0){
                 self.selected.text = "\(cantidad - 1.00)"
             }
@@ -232,10 +229,17 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
     }
     
     @IBAction func plus(_ sender: Any) {
+        let total = Double(totalCant.text!)
         if let cantidad = Int(self.selected.text!) {
-            self.selected.text = String(cantidad + 1)
+            if (Int(total!)+1 <= Int(articuloMov.deposito_origen!.quantity!)){
+                self.selected.text = String(cantidad + 1)
+            }
         } else {
             let cantidad = Double(self.selected.text!)!
+            
+            if (total!+1.00 <= articuloMov.deposito_origen!.quantity!){
+                self.selected.text = String(cantidad + 1)
+            }
             self.selected.text = "\(cantidad + 1.00)"
         }
         calculateTotal()
@@ -263,8 +267,10 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == pickerOrigen {
             articuloMov.deposito_origen = depositos[row]
+            self.quantityOrigen.text = "\(articuloMov.deposito_origen?.quantity ?? 0.00)"
         } else if pickerView == pickerDestino {
             articuloMov.deposito_destino = depositos[row]
+            self.quantityDestino.text = "\(articuloMov.deposito_destino?.quantity ?? 0.00)"
         }
     }
     
@@ -298,7 +304,7 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
             if let destination = segue.destination as? BuscarArticulo {
                 destination.usuario = self.usuario
                 destination.articulosMov = self.articulosMov
-                destination.searchQueryText = self.barcode.text!
+                destination.searchQueryText = self.barcode.text ?? " "
                 destination.tipoPantalla = "2"
             }
         }

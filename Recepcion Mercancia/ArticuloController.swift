@@ -323,21 +323,24 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
 }
 
-class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    // 1 = Recepcion // 2 = Movimiento
+    var tipoPantalla = "1"
+    
     // Vista para buscar proveedor y selecionar el proveedor
     var searchQueryText = ""
     var articulos = [Article]()
     var articulos_lista = [Article]()
     var articulosMov = [ArticleMov]()
+    var grupos = [Grupo]()
     var articulo: Article!
     var proveedor: Proveedor!
     var usuario: User!
-    
-    // 1 = Recepcion // 2 = Movimiento
-    var tipoPantalla = "1"
+    var groupSelected: Grupo?
     
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var groupsPickerView: UIPickerView!
     @IBOutlet weak var queryProveedorInput: UITextField!
     
     // Cuando damos tap en el view se quita el teclado
@@ -346,22 +349,68 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func buscarProveedor(){
+        self.articulos.removeAll()
+        
+        if (groupSelected == nil && self.searchQueryText != ""){
+            let params = [
+                "nombre":"\(self.searchQueryText)"
+            ]
+            
+            // Ejecutamos el servicio
+            ToolsPaseo().consultPOST(path: "/GetArticlesList", params: params) { data in
+                // agregamos datos al arreglo de proveedores
+                for (_, subJson):(String, JSON) in data {
+                    let article = Article()
+                    article.auto = subJson["auto"].string!
+                    article.nombre = subJson["nombre"].string!
+                    article.codigo = subJson["codigo"].string!
+                    self.articulos.append(article)
+                    
+                    // Actualizamos la tabla con los nuevos datos
+                    self.tableView.reloadData()
+                }
+            }
+        } else {
+            let params: [String:String] = [:]
+            // Ejecutamos el servicio
+            ToolsPaseo().consultPOSTAlt(path: "http://10.10.0.201:9000/api/v1/ventas/articles/?group=\(groupSelected!.auto!)&noPrice=1", params: params) { data in
+                // agregamos datos al arreglo de proveedores
+                for (_, subJson):(String, JSON) in data["data"] {
+                    let article = Article()
+                    article.auto = subJson["auto"].string!
+                    article.nombre = subJson["nombre"].string!
+                    article.codigo = subJson["codigo"].string!
+                    self.articulos.append(article)
+                    
+                    // Actualizamos con los nuevos datos
+                    self.tableView.reloadData()
+                }
+                
+            }
+        }
+    }
+    
+    func buscarGrupos() {
         let params = [
-            "nombre":"\(self.searchQueryText)"
+            "section":"03"
         ]
         
+        var grupo = Grupo()
+        grupo.nombre = ""
+        grupo.auto = ""
+        self.grupos.append(grupo)
+        
         // Ejecutamos el servicio
-        ToolsPaseo().consultPOST(path: "/GetArticlesList", params: params) { data in
+        ToolsPaseo().consultPOSTAlt(path: "http://10.10.0.201:9000/api/v1/ventas/groups/?section=06", params: params) { data in
             // agregamos datos al arreglo de proveedores
-            for (_, subJson):(String, JSON) in data {
-                let article = Article()
-                article.auto = subJson["auto"].string!
-                article.nombre = subJson["nombre"].string!
-                article.codigo = subJson["codigo"].string!
-                self.articulos.append(article)
+            for (_, subJson):(String, JSON) in data["data"] {
+                grupo = Grupo()
+                grupo.nombre = subJson["nombre"].string!
+                grupo.auto = subJson["auto_grupo"].string!
+                self.grupos.append(grupo)
                 
-                // Actualizamos la tabla con los nuevos datos
-                self.tableView.reloadData()
+                // Actualizamos con los nuevos datos
+                self.groupsPickerView.reloadAllComponents()
             }
             
         }
@@ -370,17 +419,20 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Mostramos el nombre de usuario
         
-        if (self.searchQueryText[0] == "*"){
-            self.searchQueryText.remove(at: searchQueryText.startIndex)
+        // Mostramos el nombre de usuario
+        if(self.searchQueryText.characters.count > 0){
+            if (self.searchQueryText[0] == "*"){
+                self.searchQueryText.remove(at: searchQueryText.startIndex)
+            }
             
+            self.queryProveedorInput.text = self.searchQueryText
+            // buscamos todos los articulos
+            self.buscarProveedor()
         }
         
-        self.queryProveedorInput.text = self.searchQueryText
-        
-        // buscamos todos los proveedores
-        self.buscarProveedor()
+        // buscamos los grupos
+        self.buscarGrupos()
     }
     
     // Tabla
@@ -404,13 +456,33 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
+    // PICKER VIEW
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.grupos.count
+    }
+    
+    // Seteamos los arreglos(data) a los picker
+    func pickerView(_
+        pickerView: UIPickerView,
+                    titleForRow row: Int,
+                    forComponent component: Int
+        ) -> String? {
+        
+        return self.grupos[row].nombre!
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        groupSelected = grupos[row]
+    }
+    
     @IBAction func buscarArticuloButton(_ sender: Any) {
         self.searchQueryText = self.queryProveedorInput.text!
         
-        if (self.searchQueryText != ""){
-            //Filtramos los proveedores
-            self.buscarProveedor()
-        }
+        self.buscarProveedor()
     }
     
     @IBAction func elegirButton(_ sender: Any) {

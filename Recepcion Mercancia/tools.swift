@@ -54,4 +54,18 @@ class ToolsPaseo {
         }
         
     }
+    
+    // Method por make a http POST request to alternative webservice and returning a JSON object
+    func consultPOSTAlt(path: String, params: [String:String]?, completion:@escaping (JSON) -> Void){
+        
+        Alamofire.request("\(path)", method: .post, parameters:params).responseString {
+            response in
+            
+            if let json = response.result.value {
+                let data = JSON.init(parseJSON:json)
+                completion(data)
+            }
+        }
+        
+    }
 }

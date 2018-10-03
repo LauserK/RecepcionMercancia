@@ -25,6 +25,7 @@
 		FA78679F20079CBA00BB4D12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA78679E20079CBA00BB4D12 /* Assets.xcassets */; };
 		FA7867A220079CBA00BB4D12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA7867A020079CBA00BB4D12 /* LaunchScreen.storyboard */; };
 		FA7867AA20079DEA00BB4D12 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7867A920079DEA00BB4D12 /* Alamofire.framework */; };
+		FA86F5542163D67A0023DF6E /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA86F5532163D67A0023DF6E /* Group.swift */; };
 		FA8D17C321628F6D00CCA3A4 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8D17C221628F6D00CCA3A4 /* MenuViewController.swift */; };
 		FA8D17C52162B7D900CCA3A4 /* ArticleMovimientoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8D17C42162B7D900CCA3A4 /* ArticleMovimientoViewController.swift */; };
 		FA8D17C72162B9EF00CCA3A4 /* ArticleMov.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8D17C62162B9EF00CCA3A4 /* ArticleMov.swift */; };
@@ -63,6 +64,7 @@
 		FA7867A120079CBA00BB4D12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA7867A320079CBA00BB4D12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA7867A920079DEA00BB4D12 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		FA86F5532163D67A0023DF6E /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Group.swift; path = models/Group.swift; sourceTree = "<group>"; };
 		FA8D17C221628F6D00CCA3A4 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		FA8D17C42162B7D900CCA3A4 /* ArticleMovimientoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleMovimientoViewController.swift; sourceTree = "<group>"; };
 		FA8D17C62162B9EF00CCA3A4 /* ArticleMov.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleMov.swift; path = models/ArticleMov.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				FA0805B8203DBFDF001DFB53 /* Article.swift */,
 				FA8D17C62162B9EF00CCA3A4 /* ArticleMov.swift */,
 				FA8D17C82162C99200CCA3A4 /* Warehouse.swift */,
+				FA86F5532163D67A0023DF6E /* Group.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				FADDF6722010D6C800D046C8 /* ArticuloController.swift in Sources */,
 				FA0805B5203B63FD001DFB53 /* User.swift in Sources */,
 				FA020253207FBCCF001E10A1 /* ProviderCore+CoreDataClass.swift in Sources */,
+				FA86F5542163D67A0023DF6E /* Group.swift in Sources */,
 				FA8D17C321628F6D00CCA3A4 /* MenuViewController.swift in Sources */,
 				FA8D17CB2162E54B00CCA3A4 /* TotalizarMovViewController.swift in Sources */,
 				FA8D17C52162B7D900CCA3A4 /* ArticleMovimientoViewController.swift in Sources */,
