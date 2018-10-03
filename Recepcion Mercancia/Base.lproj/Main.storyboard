@@ -480,7 +480,7 @@
                                         <rect key="frame" x="0.0" y="28" width="288" height="141"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XZP-eq-Gif" id="rGA-7d-QIP">
-                                            <rect key="frame" x="0.0" y="0.0" width="288" height="141"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="140"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="REFRESCO COCA COLA LIGHT PET 1500ML" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tuB-gK-ILf">
@@ -669,11 +669,13 @@
                         <color key="backgroundColor" red="1" green="0.81568627450980391" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="headerView" destination="kGe-P8-Xjs" id="zuW-7a-hx3"/>
                         <outlet property="proveedorQuery" destination="2zB-F5-1qP" id="2uJ-9R-B2D"/>
                         <outlet property="searchProveedorBtn" destination="1Wj-Cr-YKe" id="Q1W-nA-bTC"/>
                         <outlet property="userLabel" destination="nnn-4E-Lxe" id="bGg-NU-Ilv"/>
                         <segue destination="K4m-eD-BSL" kind="showDetail" identifier="irBuscarProveedor" action="showViewController:sender:" id="ty8-kC-JoQ"/>
                         <segue destination="zxZ-88-Krg" kind="showDetail" identifier="moveToArticle" action="showViewController:sender:" id="lu6-LG-lOI"/>
+                        <segue destination="m2U-h9-djE" kind="showDetail" identifier="irMenu" id="uje-uJ-i2e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBM-q8-NHO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -739,7 +741,7 @@
                                         <rect key="frame" x="0.0" y="28" width="288" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wbv-ki-AsA" id="6SS-Zi-rzG">
-                                            <rect key="frame" x="0.0" y="0.0" width="288" height="58"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RESTAURANTES DE COMIDA RAPIDA NUESTRO GRAN PAIS NGP CA" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Flb-o2-RSe">
@@ -1091,7 +1093,7 @@
                                         <rect key="frame" x="0.0" y="28" width="288" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f5b-j6-Wvs" id="p9B-Fu-n40">
-                                            <rect key="frame" x="0.0" y="0.0" width="288" height="81"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="REFRESCO COCA COLA LIGHT PET 1500ML" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVr-6X-HOI">
@@ -1480,12 +1482,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="uje-uJ-i2e"/>
         <segue reference="iWj-LQ-i6i"/>
         <segue reference="Dz3-Tf-hcp"/>
-        <segue reference="7qL-bz-OWb"/>
-        <segue reference="p3u-Oj-uLK"/>
+        <segue reference="lu6-LG-lOI"/>
         <segue reference="TnS-vo-7ae"/>
-        <segue reference="MSG-PH-0kD"/>
         <segue reference="1px-tG-gy3"/>
+        <segue reference="p3u-Oj-uLK"/>
     </inferredMetricsTieBreakers>
 </document>

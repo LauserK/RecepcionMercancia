@@ -21,6 +21,7 @@ class EscogerProveedor: UIViewController {
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var proveedorQuery: UITextField!
     @IBOutlet weak var searchProveedorBtn: UIButton!
+    @IBOutlet weak var headerView: UIView!
     
     @IBAction func searchProveedor(_ sender: Any) {
         // al pulsar BUSCAR vamos a la vista correspondiente
@@ -59,6 +60,12 @@ class EscogerProveedor: UIViewController {
                 destination.usuario = self.usuario
             }
         }
+        
+        if segue.identifier == "irMenu" {
+            if let destination = segue.destination as? MenuViewController {
+                destination.usuario = self.usuario
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -73,6 +80,24 @@ class EscogerProveedor: UIViewController {
         // Cuando se hace TAP en cualquier lugar oculta el keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTapHeader(sender:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        headerView.addGestureRecognizer(doubleTapGesture)
+    }
+    
+    func handleDoubleTapHeader(sender: UITapGestureRecognizer){
+        // create the alert
+        let alert = UIAlertController(title: "¡ALERTA!", message: "¿DESEAS REGRESAR AL MENU PRINCIPAL?", preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "SI", style: UIAlertActionStyle.destructive, handler: { action in
+            self.performSegue(withIdentifier: "irMenu", sender: self)
+        }))
+        alert.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
     
     // Cuando se hace tap quita el keyboard
