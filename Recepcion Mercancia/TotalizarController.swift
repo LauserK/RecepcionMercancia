@@ -231,6 +231,11 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
         articleCell.nombre = article.nombre
         articleCell.cantidad = article.cantidad_recibida
         articleCell.codigo = article.codigo
+        
+        // Long tap to delete the row
+        let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleArticleLongTap(sender:)))
+        articleCell.addGestureRecognizer(longTapGesture)
+        
         return articleCell
     }
     
@@ -239,6 +244,25 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.articulo = self.articulos[indexPath.row]
         self.selectedArticle = indexPath.row
+    }
+    
+    @objc func handleArticleLongTap(sender: UILongPressGestureRecognizer) {
+        let longPress = sender as UILongPressGestureRecognizer
+        let locationInView = longPress.location(in: self.articleTablewView)
+        let indexPath = self.articleTablewView.indexPathForRow(at: locationInView)
+        
+        // create the alert
+        let alert = UIAlertController(title: "¡ALERTA!", message: "¿DESEAS ELIMINAR EL ARTÍCULO DE LA MINUTA?", preferredStyle: UIAlertControllerStyle.actionSheet)        
+        
+        // add the actions (buttons)
+        alert.addAction(UIAlertAction(title: "SI", style: UIAlertActionStyle.destructive, handler: { action in
+            self.articulos.remove(at: indexPath!.row)
+            self.articleTablewView.reloadData()
+        }))
+        alert.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
     
     // return to article
