@@ -18,6 +18,8 @@ class TecladoController: UIViewController {
     var articulos = [Article]()
     var decimales = false
     
+    var tipo = "1"
+    
     
     @IBOutlet weak var labelText: UILabel!
     
@@ -117,8 +119,13 @@ class TecladoController: UIViewController {
                 destination.usuario = self.usuario
                 destination.proveedor = self.proveedor
                 destination.articulo = self.articulo
-                destination.cantidad = self.labelText.text!
                 destination.articulos = self.articulos
+                
+                if self.tipo == "1" {
+                    destination.cantidad = self.labelText.text!
+                } else if tipo == "2" {
+                    destination.articulo.unidades = Int(self.labelText.text!)
+                }
             }
         }
     }

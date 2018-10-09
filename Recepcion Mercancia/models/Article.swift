@@ -24,6 +24,8 @@ class Article {
     var auto_medida: String?
     var auto_tasa: String?
     var tasa: String?
+    var unidades: Int?
+    var total: Double?
 
 }
 
@@ -42,7 +44,9 @@ extension Article {
             "cantidad_factura": self.cantidad_recibida!,
             "empaque": "UNIDAD",
             "auto_tasa": self.auto_tasa ?? "0000000002",
-            "tasa": self.tasa ?? "12.00"
+            "tasa": self.tasa ?? "12.00",
+            "unidades": self.unidades ?? 0,
+            "total": self.total ?? 0.00        
         ]
     }
     

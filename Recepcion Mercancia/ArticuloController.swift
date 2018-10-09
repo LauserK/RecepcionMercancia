@@ -23,6 +23,10 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     @IBOutlet weak var btnEditarCantidad: UIButton!
     @IBOutlet weak var titulo2Label: UILabel!
     @IBOutlet weak var unidadLabel: UILabel!
+    @IBOutlet weak var unityLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var unityInput: UILabel!
+    @IBOutlet weak var totalInput: UILabel!
     
     var proveedor: Proveedor!
     
@@ -36,23 +40,27 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     var unidadMedidaData = [["",""]]
     
+    var selected: UILabel!
+    
     // 1 = Ingresar recibido // 2 = ingresar lo que especifica la factura
     var tipoPantalla = 1
     
     let barcoder = Barcoder.sharedInstance
     
     @IBAction func cantidadMenos(_ sender: Any) {
-        if let cantidad = Int(self.cantidadLabel.text!) {
+        if let cantidad = Int(self.selected.text!) {
             if (cantidad > 0){
-                self.cantidadLabel.text = String(cantidad - 1)
+                self.selected.text = String(cantidad - 1)
             }
         }
+        calculateTotal()
     }
     
     @IBAction func cantidadMas(_ sender: Any) {
-        if let cantidad = Int(self.cantidadLabel.text!) {
-            self.cantidadLabel.text = String(cantidad + 1)
+        if let cantidad = Int(self.selected.text!) {
+            self.selected.text = String(cantidad + 1)
         }
+        calculateTotal()
     }
     
     @IBAction func scanButtonAction(_ sender: Any) {
@@ -108,13 +116,17 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 
                 // mostrar controles de cantidades y medidas
                 self.cantidadLabel.isHidden = false
-                self.unidadMedidaPicker.isHidden = false
+                //self.unidadMedidaPicker.isHidden = false
                 self.btnCantidadMas.isHidden = false
                 self.btnCantidadMenos.isHidden = false
                 self.titulo2Label.isHidden = false
                 self.btnEditarCantidad.isHidden = false
                 self.unidadLabel.isHidden = false
                 self.articuloLabel.textColor = UIColor.black
+                self.unityLabel.isHidden = false
+                self.totalLabel.isHidden = false
+                self.unityInput.isHidden = false
+                self.totalInput.isHidden = false
                 
                 // Mostramos los datos
                 self.articuloLabel.text = self.articulo.nombre!
@@ -154,6 +166,8 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         self.proveedorLabel.text = self.proveedor.razon_social
         self.usuarioLabel.text = self.usuario.nombre
         
+        self.selected = cantidadLabel
+        
         // ocultar controles de cantidades y medidas o mostrar datos
         self.cantidadLabel.isHidden = true
         self.unidadMedidaPicker.isHidden = true
@@ -162,6 +176,10 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         self.titulo2Label.isHidden = true
         self.btnEditarCantidad.isHidden = true
         self.unidadLabel.isHidden = true
+        self.unityLabel.isHidden = true
+        self.totalLabel.isHidden = true
+        self.unityInput.isHidden = true
+        self.totalInput.isHidden = true
         
         // Buscar unidades de medida
         /*
@@ -184,13 +202,36 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
             // Mostrar la cantidad inputada en la vista anterior
             if (self.cantidad != "0"){
                 self.cantidadLabel.text = "\(self.cantidad)"
+            } else {
+                self.cantidadLabel.text = "\(self.articulo.cantidad_recibida ?? "0")"
             }
+            
+            self.unityInput.text = "\(self.articulo.unidades ?? 0)"
         }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleUnityLabelTap(sender:)))
+        unityInput.addGestureRecognizer(tapGesture)
+        
+        calculateTotal()
     }
     
     @IBAction func irVolver(_ sender: Any) {
         self.performSegue(withIdentifier: "irTotalizar", sender: self)
     }
+    
+    func calculateTotal(){
+        let packageTotal = Double(cantidadLabel.text!)! * Double(articulo.contenido_compras!)
+        let total = packageTotal + Double(unityInput.text!)!
+        totalInput.text = "\(total)"
+        self.articulo.unidades = Int(unityInput.text!) ?? 0
+        self.articulo.total = total
+
+        if tipoPantalla == 1 {
+            self.articulo.cantidad_recibida = cantidadLabel.text!
+        }
+        
+    }
+    
     
     func irSiguiente(){
         // Agregar el articulo al array de recibidos
@@ -261,6 +302,17 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
         }
     }
     
+    @objc func handleUnityLabelTap(sender: UITapGestureRecognizer) {
+        
+        if (selected == unityInput){
+            selected = cantidadLabel
+            unityInput.backgroundColor = UIColor.white
+        } else {
+            selected = unityInput
+            unityInput.backgroundColor = UIColor.yellow
+        }
+    }
+    
     // Barcode
     func didScan(barcode: Barcode) {
         // Al escanear insertamos el codigo en el input y ejecutamos la busqueda
@@ -301,6 +353,12 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 destination.proveedor = self.proveedor
                 destination.articulo = self.articulo
                 destination.articulos = self.articulos
+                
+                if selected == unityInput {
+                    destination.tipo = "2"
+                } else {
+                    destination.tipo = "1"
+                }
             }
         }
         

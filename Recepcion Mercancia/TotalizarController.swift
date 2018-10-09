@@ -81,17 +81,17 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
             }
             
-            if (auto_deposito == nil && (article.auto_deposito?.count)! > 0) {
-                auto_deposito = article.auto_deposito?[0]["auto_deposito"] as! String?
-            }
+            //if (auto_deposito == nil && (article.auto_deposito?.count)! > 0) {
+            //    auto_deposito = article.auto_deposito?[0]["auto_deposito"] as! String?
+            //}
             
             // Calculate the cant of article
-            let cantidad = Double(article.cantidad_recibida!)! * Double(article.contenido_compras!)
+            //let cantidad = Double(article.cantidad_recibida!)! * Double(article.contenido_compras!)
             
             let params = [
                 "auto_producto": "\(article.auto!)",
                 "auto_deposito": "\(auto_deposito ?? "0000000002")",
-                "cantidad": "\(cantidad)",
+                "cantidad": "\(article.total!)",
                 "signo": "+"
             ]
             
