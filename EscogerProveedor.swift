@@ -133,18 +133,19 @@ class BuscarProveedor: UIViewController, UITableViewDelegate, UITableViewDataSou
         let params = ["razon_social": "\(self.searchQueryText)"]
         // Ejecutamos el servicio
         ToolsPaseo().consultPOST(path: "/GetProveedores", params: params) { data in
-            
             // agregamos datos al arreglo de proveedores
             for (_, subJson):(String, JSON) in data {
-                let proveedor = Proveedor()
-                proveedor.auto = subJson["auto"].string!
-                proveedor.razon_social = subJson["razon_social"].string!
-                proveedor.ci_rif = subJson["ci_rif"].string!
-                proveedor.dir_fiscal = subJson["dir_fiscal"].string!
-                self.proveedores.append(proveedor)
-                
-                // Actualizamos la tabla con los nuevos datos
-                self.tableView.reloadData()
+                if (data[0]["error"] != true){
+                    let proveedor = Proveedor()
+                    proveedor.auto = subJson["auto"].string!
+                    proveedor.razon_social = subJson["razon_social"].string!
+                    proveedor.ci_rif = subJson["ci_rif"].string!
+                    proveedor.dir_fiscal = subJson["dir_fiscal"].string!
+                    self.proveedores.append(proveedor)
+                    
+                    // Actualizamos la tabla con los nuevos datos
+                    self.tableView.reloadData()
+                }                
             }
         
         }

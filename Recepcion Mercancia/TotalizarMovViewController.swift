@@ -87,7 +87,13 @@ class TotalizarMovViewController: UIViewController, UITableViewDelegate, UITable
                     ToolsPaseo().consultPOST(path: "/UpdateDeposit", params: params){ data in
                         if(data[0]["error"] == true){
                             self.dismiss(animated:true){
-                                print("Error: \(article.article?.nombre!)")
+                                // create the alert
+                                let alert = UIAlertController(title: "¡Error al actualizar los almacenes!", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                                
+                                alert.addAction(UIAlertAction(title: "ACEPTAR", style: .default, handler: nil))
+                                
+                                // show the alert
+                                self.present(alert, animated: true, completion: nil)
                             }
                         } else {
                             if cont == self.articulosMov.count {

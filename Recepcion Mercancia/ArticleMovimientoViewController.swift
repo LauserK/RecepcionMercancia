@@ -94,7 +94,7 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
                 self.articulo.auto_departamento = data["auto_departamento"].string!
                 self.articulo.auto_grupo        = data["auto_grupo"].string!
                 self.articulo.auto_subgrupo     = data["auto_subgrupo"].string!
-                self.articulo.tasa              = String(data["tasa"].int ?? 0)
+                self.articulo.tasa              = data["tasa"].string!
                 self.articulo.auto_deposito     = []
                 
                 if self.articuloMov == nil {

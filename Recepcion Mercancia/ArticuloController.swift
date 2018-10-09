@@ -94,7 +94,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 self.articulo.auto_departamento = data["auto_departamento"].string!
                 self.articulo.auto_grupo        = data["auto_grupo"].string!
                 self.articulo.auto_subgrupo     = data["auto_subgrupo"].string!
-                self.articulo.tasa              = String(data["tasa"].int ?? 0)
+                self.articulo.tasa              = data["tasa"].string!
                 self.articulo.auto_deposito     = []
                 
                 // Agregar todos los depositos asociados al articulo a un array
@@ -358,16 +358,18 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             // Ejecutamos el servicio
             ToolsPaseo().consultPOST(path: "/GetArticlesList", params: params) { data in
-                // agregamos datos al arreglo de proveedores
-                for (_, subJson):(String, JSON) in data {
-                    let article = Article()
-                    article.auto = subJson["auto"].string!
-                    article.nombre = subJson["nombre"].string!
-                    article.codigo = subJson["codigo"].string!
-                    self.articulos.append(article)
-                    
-                    // Actualizamos la tabla con los nuevos datos
-                    self.tableView.reloadData()
+                if (data[0]["error"] != true){
+                    // agregamos datos al arreglo de proveedores
+                    for (_, subJson):(String, JSON) in data {
+                        let article = Article()
+                        article.auto = subJson["auto"].string!
+                        article.nombre = subJson["nombre"].string!
+                        article.codigo = subJson["codigo"].string!
+                        self.articulos.append(article)
+                        
+                        // Actualizamos la tabla con los nuevos datos
+                        self.tableView.reloadData()
+                    }
                 }
             }
         } else {
@@ -391,9 +393,7 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func buscarGrupos() {
-        let params = [
-            "section":"03"
-        ]
+        let params:[String:String] = [:]
         
         var grupo = Grupo()
         grupo.nombre = ""
