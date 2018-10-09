@@ -220,16 +220,17 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     }
     
     func calculateTotal(){
-        let packageTotal = Double(cantidadLabel.text!)! * Double(articulo.contenido_compras!)
-        let total = packageTotal + Double(unityInput.text!)!
-        totalInput.text = "\(total)"
-        self.articulo.unidades = Int(unityInput.text!) ?? 0
-        self.articulo.total = total
-
-        if tipoPantalla == 1 {
-            self.articulo.cantidad_recibida = cantidadLabel.text!
-        }
-        
+        if (articulo != nil){
+            let packageTotal = Double(cantidadLabel.text!)! * Double(articulo.contenido_compras!)
+            let total = packageTotal + Double(unityInput.text!)!
+            totalInput.text = "\(total)"
+            self.articulo.unidades = Int(unityInput.text!) ?? 0
+            self.articulo.total = total
+            
+            if tipoPantalla == 1 {
+                self.articulo.cantidad_recibida = cantidadLabel.text!
+            }
+        }        
     }
     
     

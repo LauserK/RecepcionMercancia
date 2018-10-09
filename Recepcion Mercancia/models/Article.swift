@@ -79,6 +79,8 @@ extension Article {
                     article.cantidad_recibida = "\(data.value(forKey: "cantidad_recibida")!)"
                     article.cantidad_factura  = "\(data.value(forKey: "cantidad_factura")!)"
                     article.tasa              = "\(data.value(forKey: "tasa")!)"
+                    article.unidades          = Int("\(data.value(forKey: "unidades")!)")!
+                    article.total             = Double("\(data.value(forKey: "total")!)")!
                     articles.append(article)
                 }
             }
@@ -107,6 +109,8 @@ extension Article {
         article.cantidad_recibida = articulo.cantidad_recibida!
         article.cantidad_factura  = articulo.cantidad_factura!
         article.tasa              = articulo.tasa!
+        article.unidades          = "\(articulo.unidades!)"
+        article.total             = "\(articulo.total!)"
         
         do {
             try managedObjectContext.save()

@@ -76,6 +76,7 @@
 		FAAE9D5C201A856A00E11710 /* ArticleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		FAAE9D5E201B556F00E11710 /* FontAwesome_swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome_swift.framework; path = "Pods/../build/Debug-iphoneos/FontAwesome.swift/FontAwesome_swift.framework"; sourceTree = "<group>"; };
 		FAAE9D60201B564C00E11710 /* FontAwesome_swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome_swift.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/FontAwesome.swift/FontAwesome_swift.framework"; sourceTree = "<group>"; };
+		FAB0BF11216CEBBF0018EF05 /* Model 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4.xcdatamodel"; sourceTree = "<group>"; };
 		FADDF6712010D6C800D046C8 /* ArticuloController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticuloController.swift; sourceTree = "<group>"; };
 		FADDF67B2010F78300D046C8 /* BarcodeScanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BarcodeScanner.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/BarcodeScanner/BarcodeScanner.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -537,11 +538,12 @@
 		FA020243207FA605001E10A1 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				FAB0BF11216CEBBF0018EF05 /* Model 4.xcdatamodel */,
 				FA020250207FBC5D001E10A1 /* Model 3.xcdatamodel */,
 				FA02024F207FB14B001E10A1 /* Model 2.xcdatamodel */,
 				FA020244207FA605001E10A1 /* Model.xcdatamodel */,
 			);
-			currentVersion = FA020250207FBC5D001E10A1 /* Model 3.xcdatamodel */;
+			currentVersion = FAB0BF11216CEBBF0018EF05 /* Model 4.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

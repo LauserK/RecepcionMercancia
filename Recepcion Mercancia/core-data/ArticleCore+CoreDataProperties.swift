@@ -28,5 +28,7 @@ extension ArticleCore {
     @NSManaged public var auto_medida: String?
     @NSManaged public var cantidad_factura: String?
     @NSManaged public var tasa: String?
+    @NSManaged public var unidades: String?
+    @NSManaged public var total: String?
 
 }
