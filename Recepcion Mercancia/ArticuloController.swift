@@ -221,11 +221,14 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     func calculateTotal(){
         if (articulo != nil){
-            let packageTotal = Double(cantidadLabel.text!)! * Double(articulo.contenido_compras!)
-            let total = packageTotal + Double(unityInput.text!)!
+            let packageTotal = Double(cantidadLabel.text ?? "0.00")! * Double(articulo.contenido_compras ?? 1)
+            let total = packageTotal + Double(unityInput.text ?? "0.00")!
             totalInput.text = "\(total)"
             self.articulo.unidades = Int(unityInput.text!) ?? 0
             self.articulo.total = total
+            
+            print("Total: \(self.articulo.total)")
+            print("Unidades: \(self.articulo.unidades)")
             
             if tipoPantalla == 1 {
                 self.articulo.cantidad_recibida = cantidadLabel.text!
@@ -235,6 +238,8 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     
     func irSiguiente(){
+        calculateTotal()
+        
         // Agregar el articulo al array de recibidos
         self.articulos.append(self.articulo)
         
@@ -280,8 +285,6 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
             alert.addAction(UIAlertAction(title: "SI", style: UIAlertActionStyle.default, handler: { action in
                 // Preguntar si hay mas articulos o ir a lista de recibidos
                 self.irSiguiente()
-                
-                
             }))
             alert.addAction(UIAlertAction(title: "NO", style: UIAlertActionStyle.default, handler: { action in
             
