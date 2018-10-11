@@ -36,6 +36,11 @@ class MenuViewController: UIViewController {
         self.performSegue(withIdentifier: "irArticleMovimiento", sender: self)
     }
     
+    @IBAction func tapAjuste(_ sender: Any) {
+        self.performSegue(withIdentifier: "irAjuste", sender: self)
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "irProveedor" {
             if let destination = segue.destination as? EscogerProveedor {
@@ -45,6 +50,12 @@ class MenuViewController: UIViewController {
         
         if segue.identifier == "irArticleMovimiento" {
             if let destination = segue.destination as? ArticleMovimientoViewController {
+                destination.usuario = self.usuario
+            }
+        }
+        
+        if segue.identifier == "irAjuste" {
+            if let destination = segue.destination as? AjusteViewController {
                 destination.usuario = self.usuario
             }
         }

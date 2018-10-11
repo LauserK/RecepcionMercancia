@@ -227,9 +227,6 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
             self.articulo.unidades = Int(unityInput.text!) ?? 0
             self.articulo.total = total
             
-            print("Total: \(self.articulo.total)")
-            print("Unidades: \(self.articulo.unidades)")
-            
             if tipoPantalla == 1 {
                 self.articulo.cantidad_recibida = cantidadLabel.text!
             }
@@ -387,7 +384,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
 
 class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    // 1 = Recepcion // 2 = Movimiento
+    // 1 = Recepcion // 2 = Movimiento // 3 = Ajuste
     var tipoPantalla = "1"
     
     // Vista para buscar proveedor y selecionar el proveedor
@@ -551,8 +548,10 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if (tipoPantalla == "1"){
             self.performSegue(withIdentifier: "returnToArticle", sender: self)
-        } else {
+        } else if (tipoPantalla == "2"){
             self.performSegue(withIdentifier: "returnToMovimiento", sender: self)
+        } else {
+            self.performSegue(withIdentifier: "returnToAjuste", sender: self)
         }
         
     }
@@ -572,6 +571,13 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let destination = segue.destination as? ArticleMovimientoViewController {
                 destination.usuario = self.usuario
                 destination.articulosMov = self.articulosMov
+                destination.articulo = self.articulo
+            }
+        }
+        
+        if segue.identifier == "returnToAjuste" {
+            if let destination = segue.destination as? AjusteViewController {
+                destination.usuario = self.usuario
                 destination.articulo = self.articulo
             }
         }
