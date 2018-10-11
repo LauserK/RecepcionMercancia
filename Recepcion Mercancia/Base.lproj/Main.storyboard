@@ -73,7 +73,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="95.625" y="36.971830985915496"/>
+            <point key="canvasLocation" x="39" y="-744"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="VCl-8U-z5G">
@@ -115,10 +115,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="KAb-TV-OC4">
-                                        <rect key="frame" x="35" y="119" width="218" height="30"/>
+                                        <rect key="frame" x="35" y="108" width="218" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <state key="normal" title="MOVIMIENTOS DE INVENTARIO"/>
+                                        <state key="normal" title="MOVIMIENTO ALMACENES"/>
                                         <connections>
                                             <action selector="tapMovimientos:" destination="m2U-h9-djE" eventType="touchUpInside" id="N1j-gr-GCq"/>
                                         </connections>
@@ -130,6 +130,15 @@
                                         <state key="normal" title="RECEPCION MERCANCIA"/>
                                         <connections>
                                             <action selector="tapRecepcion:" destination="m2U-h9-djE" eventType="touchUpInside" id="6Jr-qv-ip4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="5RF-NR-C7n">
+                                        <rect key="frame" x="35" y="165" width="218" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <state key="normal" title="AJUSTE INVENTARIO"/>
+                                        <connections>
+                                            <action selector="tapAjuste:" destination="m2U-h9-djE" eventType="touchUpInside" id="u8y-93-nOp"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -154,11 +163,200 @@
                         <outlet property="userLabel" destination="F7C-Z0-mQR" id="h9o-0L-nfq"/>
                         <segue destination="IBI-PM-hr8" kind="showDetail" identifier="irProveedor" id="Q4p-DM-aS3"/>
                         <segue destination="yN0-3S-evh" kind="showDetail" identifier="irArticleMovimiento" id="h6R-8C-YUa"/>
+                        <segue destination="Niz-DV-pED" kind="showDetail" identifier="irAjuste" id="Yjy-sk-ScK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A5V-5f-KQZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="849.375" y="-743.66197183098598"/>
+        </scene>
+        <!--Ajuste View Controller-->
+        <scene sceneID="iYA-ZJ-fAl">
+            <objects>
+                <viewController id="Niz-DV-pED" customClass="AjusteViewController" customModule="Recepcion_Mercancia" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="N2V-83-9wS"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Lr-RC-s0b"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0Xs-3x-l4Q">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ej-LQ-dag">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--------------" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FR5-PL-HAm">
+                                        <rect key="frame" x="8" y="26" width="304" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="USUARIO:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJm-th-N0N">
+                                        <rect key="frame" x="8" y="12" width="79" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.85490196080000003" green="0.85882352939999995" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="Vv6-hG-NSj"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ESCANEA UN ARTICULO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4J-On-FOc">
+                                <rect key="frame" x="14" y="68" width="288" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CODIGO DEL ARTICULO" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BU6-uI-Spa">
+                                <rect key="frame" x="14" y="100" width="156" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" keyboardType="webSearch" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIv-dE-E3N">
+                                <rect key="frame" x="246" y="100" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.63137254899999995" green="0.51764705879999995" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <state key="normal" title="BUSCAR">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchArticle:" destination="Niz-DV-pED" eventType="touchUpInside" id="dBz-zQ-wH5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFJ-NU-dj1">
+                                <rect key="frame" x="244" y="179" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.63137254899999995" green="0.51764705879999995" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <state key="normal" title="OK">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="setQuantity:" destination="Niz-DV-pED" eventType="touchUpInside" id="inM-pJ-Vyp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4V-Ex-HOn">
+                                <rect key="frame" x="178" y="100" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.63137254899999995" green="0.51764705879999995" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <state key="normal" title="SCAN">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NOMBRE ARTICULO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9GX-lb-6gM">
+                                <rect key="frame" x="16" y="150" width="288" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CANTIDAD EXISTENTE" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CwX-m1-oYq">
+                                <rect key="frame" x="16" y="179" width="222" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" returnKeyType="done"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="53" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0ue-ns-JFV">
+                                <rect key="frame" x="14" y="228" width="290" height="269"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="wareHouseCell" rowHeight="53" id="txN-lb-26q" customClass="WareHouseTableViewCell" customModule="Recepcion_Mercancia" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="290" height="53"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="txN-lb-26q" id="fmD-vV-pQO">
+                                            <rect key="frame" x="0.0" y="0.0" width="290" height="53"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ALMACEN INTERMEDIO PASEO78" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAe-8u-ga8">
+                                                    <rect key="frame" x="8" y="0.0" width="262" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1500" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="07C-Zl-WtW">
+                                                    <rect key="frame" x="222" y="23" width="57" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CANTIDAD:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5HU-EY-giz">
+                                                    <rect key="frame" x="119" y="23" width="95" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="wareHouseNameLabel" destination="DAe-8u-ga8" id="Ilo-My-EbG"/>
+                                            <outlet property="wareHouseQuantityLabel" destination="07C-Zl-WtW" id="x3c-Sz-Ibv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Niz-DV-pED" id="8Se-mt-MGh"/>
+                                    <outlet property="delegate" destination="Niz-DV-pED" id="1ym-HP-TNO"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUQ-Nm-ZYX">
+                                <rect key="frame" x="176" y="513" width="130" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.63137254899999995" green="0.51764705879999995" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="PROCESAR">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="Save:" destination="Niz-DV-pED" eventType="touchUpInside" id="vEb-HM-Z2A"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TbC-Zq-V69">
+                                <rect key="frame" x="16" y="513" width="130" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.63137254899999995" green="0.51764705879999995" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="VOLVER">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="goBack:" destination="Niz-DV-pED" eventType="touchUpInside" id="ufQ-hG-ley"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.81568627449999997" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="6ej-LQ-dag" firstAttribute="top" secondItem="0Xs-3x-l4Q" secondAttribute="top" id="IGK-CL-ASz"/>
+                            <constraint firstAttribute="trailing" secondItem="6ej-LQ-dag" secondAttribute="trailing" id="Ypm-RL-w9I"/>
+                            <constraint firstItem="6ej-LQ-dag" firstAttribute="leading" secondItem="0Xs-3x-l4Q" secondAttribute="leading" id="dIQ-gp-1KT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="articleCodeInput" destination="BU6-uI-Spa" id="L5g-7m-YC2"/>
+                        <outlet property="articleNameLabel" destination="9GX-lb-6gM" id="JlY-qR-Pt3"/>
+                        <outlet property="articleQuantityInput" destination="CwX-m1-oYq" id="RYo-Yh-j7S"/>
+                        <outlet property="userLabel" destination="FR5-PL-HAm" id="oya-li-viq"/>
+                        <outlet property="wareHouseTableView" destination="0ue-ns-JFV" id="n0E-vH-UJh"/>
+                        <segue destination="m2U-h9-djE" kind="showDetail" identifier="irMenu" id="8e6-hX-NR8"/>
+                        <segue destination="mmc-Q6-a5G" kind="showDetail" identifier="irBuscarArticulo" id="ren-pL-caW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V2e-u4-xhK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="862.5" y="-2319.7183098591549"/>
         </scene>
         <!--Article Movimiento View Controller-->
         <scene sceneID="GjR-ja-FQx">
@@ -405,7 +603,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sg7-la-cye" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1612.5" y="-744.71830985915494"/>
+            <point key="canvasLocation" x="849" y="-1511"/>
         </scene>
         <!--Totalizar Mov View Controller-->
         <scene sceneID="jAe-Vk-szs">
@@ -572,7 +770,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgu-WE-qj3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2336.25" y="-745.77464788732391"/>
+            <point key="canvasLocation" x="1661" y="-1512"/>
         </scene>
         <!--Escoger Proveedor-->
         <scene sceneID="SaJ-dc-ope">
@@ -1511,6 +1709,7 @@
                         <outlet property="tableView" destination="QxK-y0-dee" id="Ste-cD-Fe4"/>
                         <segue destination="zxZ-88-Krg" kind="showDetail" identifier="returnToArticle" action="showViewController:sender:" id="7qL-bz-OWb"/>
                         <segue destination="yN0-3S-evh" kind="showDetail" identifier="returnToMovimiento" id="IeV-od-fAG"/>
+                        <segue destination="Niz-DV-pED" kind="showDetail" identifier="returnToAjuste" id="cYT-Zh-c1S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Psc-fx-Xhw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1519,12 +1718,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MSG-PH-0kD"/>
-        <segue reference="TnS-vo-7ae"/>
-        <segue reference="iWj-LQ-i6i"/>
-        <segue reference="Dz3-Tf-hcp"/>
-        <segue reference="kA7-sZ-3Yd"/>
-        <segue reference="leX-RQ-1ec"/>
-        <segue reference="23k-dX-e8l"/>
+        <segue reference="IeV-od-fAG"/>
+        <segue reference="ren-pL-caW"/>
+        <segue reference="cYT-Zh-c1S"/>
+        <segue reference="8e6-hX-NR8"/>
+        <segue reference="Q4p-DM-aS3"/>
+        <segue reference="7qL-bz-OWb"/>
+        <segue reference="1px-tG-gy3"/>
+        <segue reference="eRC-L8-2I1"/>
     </inferredMetricsTieBreakers>
 </document>
