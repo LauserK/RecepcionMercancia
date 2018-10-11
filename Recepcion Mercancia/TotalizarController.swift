@@ -14,6 +14,7 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
     var proveedor: Proveedor!
     var usuario: User!
     var articulo: Article!
+    var documentoRecepcion: RecepcionDocumento!
     
     var articulos = [Article]()
     
@@ -44,6 +45,10 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
         let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTapHeader(sender:)))
         doubleTapGesture.numberOfTapsRequired = 2
         headerView.addGestureRecognizer(doubleTapGesture)
+        
+        if documentoRecepcion != nil {
+            numeroFacturaText.text = documentoRecepcion.documento ?? ""
+        }
     }
     
     // Double tap header go to menu
@@ -267,8 +272,12 @@ class TotalizarController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // return to article
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        documentoRecepcion = RecepcionDocumento()
+        documentoRecepcion.documento = numeroFacturaText.text ?? ""
+        
         if segue.identifier == "returnToArticle" {
             if let destination = segue.destination as? ArticuloController {
+                destination.documentoRecepcion = self.documentoRecepcion
                 destination.usuario = self.usuario
                 destination.proveedor = self.proveedor
                 destination.articulos = self.articulos

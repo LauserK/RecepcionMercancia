@@ -42,6 +42,8 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
     
     var selected: UILabel!
     
+    var documentoRecepcion: RecepcionDocumento!
+    
     // 1 = Ingresar recibido // 2 = ingresar lo que especifica la factura
     var tipoPantalla = 1
     
@@ -354,6 +356,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 destination.proveedor = self.proveedor
                 destination.articulo = self.articulo
                 destination.articulos = self.articulos
+                destination.documentoRecepcion = self.documentoRecepcion
                 
                 if selected == unityInput {
                     destination.tipo = "2"
@@ -368,6 +371,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 destination.usuario = self.usuario
                 destination.proveedor = self.proveedor
                 destination.articulos = self.articulos
+                destination.documentoRecepcion = self.documentoRecepcion
             }
         }
         
@@ -377,6 +381,7 @@ class ArticuloController: UIViewController, UIPickerViewDataSource, UIPickerView
                 destination.proveedor = self.proveedor
                 destination.articulos_lista = self.articulos
                 destination.searchQueryText = self.codigoInput.text!
+                destination.documentoRecepcion = self.documentoRecepcion
             }
         }
     }
@@ -397,6 +402,7 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
     var proveedor: Proveedor!
     var usuario: User!
     var groupSelected: Grupo?
+    var documentoRecepcion: RecepcionDocumento!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var groupsPickerView: UIPickerView!
@@ -431,7 +437,7 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
                     }
                 }
             }
-        } else {
+        } else if (groupSelected != nil) {
             let params: [String:String] = [:]
             // Ejecutamos el servicio
             ToolsPaseo().consultPOSTAlt(path: "http://10.10.0.201:9000/api/v1/ventas/articles/?group=\(groupSelected!.auto!)&noPrice=1", params: params) { data in
@@ -564,6 +570,7 @@ class BuscarArticulo: UIViewController, UITableViewDelegate, UITableViewDataSour
                 destination.proveedor = self.proveedor
                 destination.articulos = self.articulos_lista
                 destination.articulo = self.articulo
+                destination.documentoRecepcion = self.documentoRecepcion
             }
         }
         

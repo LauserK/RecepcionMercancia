@@ -8,8 +8,10 @@
 
 import UIKit
 import SwiftyJSON
+import ExternalAccessory
+import AdyenBarcoder
 
-class AjusteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AjusteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, BarcoderDelegate {
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var articleCodeInput: UITextField!
     @IBOutlet weak var articleNameLabel: UILabel!
@@ -21,6 +23,8 @@ class AjusteViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var articulo: Article!
     var selected: Int = 0
     
+    let barcoder = Barcoder.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +32,7 @@ class AjusteViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         wareHouseTableView.delegate = self
         wareHouseTableView.dataSource = self
+        barcoder.delegate = self
         
         if articulo != nil {
             buscarProducto(code: articulo.codigo!)
@@ -51,6 +56,11 @@ class AjusteViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.performSegue(withIdentifier: "irBuscarArticulo", sender: self)
         }
     }
+    
+    @IBAction func scan(_ sender: Any) {
+        barcoder.startSoftScan()
+    }
+    
     
     @IBAction func setQuantity(_ sender: Any) {
         let number = NumberFormatter().number(from: articleQuantityInput.text ?? "0.00")
@@ -170,6 +180,15 @@ class AjusteViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // Cuando damos tap en el view se quita el teclado
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    // Barcode
+    func didScan(barcode: Barcode) {
+        // Al escanear insertamos el codigo en el input y ejecutamos la busqueda
+        let text = "\(barcode.text)"
+        self.articleCodeInput.text = text
+        self.barcoder.stopSoftScan()
+        self.buscarProducto(code: self.articleCodeInput.text!)
     }
     
     // Tabla

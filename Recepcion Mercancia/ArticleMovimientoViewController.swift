@@ -251,6 +251,7 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
     
     // Barcode
     func didScan(barcode: Barcode) {
+        print("SCANNED: \(barcode.text)")
         // Al escanear insertamos el codigo en el input y ejecutamos la busqueda
         let text = "\(barcode.text)"
         self.barcode.text = text

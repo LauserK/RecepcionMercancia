@@ -26,10 +26,8 @@ class MenuViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
     @IBAction func tapRecepcion(_ sender: Any) {
         self.performSegue(withIdentifier: "irProveedor", sender: self)
-        
     }
     
     @IBAction func tapMovimientos(_ sender: Any) {

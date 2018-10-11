@@ -20,6 +20,7 @@ class TecladoController: UIViewController {
     
     var tipo = "1"
     
+    var documentoRecepcion: RecepcionDocumento!
     
     @IBOutlet weak var labelText: UILabel!
     
@@ -120,6 +121,7 @@ class TecladoController: UIViewController {
                 destination.proveedor = self.proveedor
                 destination.articulo = self.articulo
                 destination.articulos = self.articulos
+                destination.documentoRecepcion = self.documentoRecepcion
                 
                 if self.tipo == "1" {
                     destination.cantidad = self.labelText.text!
