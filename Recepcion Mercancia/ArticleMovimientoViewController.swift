@@ -11,7 +11,7 @@ import SwiftyJSON
 import ExternalAccessory
 import AdyenBarcoder
 
-class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, BarcoderDelegate {
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var barcode: UITextField!
     @IBOutlet weak var articleName: UILabel!
@@ -34,8 +34,11 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
     var articulosMov = [ArticleMov]()
     var depositos = [Warehouse]()
     
+    let barcoder = Barcoder.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         selected = packageCant
         userLabel.text = usuario.nombre!
         
@@ -46,6 +49,7 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
         pickerOrigen.dataSource = self
         pickerDestino.delegate = self
         pickerDestino.dataSource = self
+        barcoder.delegate = self
         
         if (self.articuloMov != nil){
             self.buscarProducto(code: self.articuloMov.article!.codigo!)
@@ -243,6 +247,15 @@ class ArticleMovimientoViewController: UIViewController, UIPickerViewDataSource,
             self.selected.text = "\(cantidad + 1.00)"
         }
         calculateTotal()
+    }
+    
+    // Barcode
+    func didScan(barcode: Barcode) {
+        // Al escanear insertamos el codigo en el input y ejecutamos la busqueda
+        let text = "\(barcode.text)"
+        self.barcode.text = text
+        self.barcoder.stopSoftScan()
+        self.buscarProducto(code: self.barcode.text!)
     }
     
     // PICKER VIEW

@@ -35,6 +35,8 @@
 		FAAE9D592013E88A00E11710 /* TecladoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D582013E88A00E11710 /* TecladoController.swift */; };
 		FAAE9D5B201A7F8900E11710 /* TotalizarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D5A201A7F8800E11710 /* TotalizarController.swift */; };
 		FAAE9D5D201A856A00E11710 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9D5C201A856A00E11710 /* ArticleCell.swift */; };
+		FADB6CFE216E27EF000A52A0 /* AjusteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADB6CFD216E27EF000A52A0 /* AjusteViewController.swift */; };
+		FADB6D00216E48F8000A52A0 /* WareHouseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADB6CFF216E48F8000A52A0 /* WareHouseTableViewCell.swift */; };
 		FADDF6722010D6C800D046C8 /* ArticuloController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADDF6712010D6C800D046C8 /* ArticuloController.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +79,8 @@
 		FAAE9D5E201B556F00E11710 /* FontAwesome_swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome_swift.framework; path = "Pods/../build/Debug-iphoneos/FontAwesome.swift/FontAwesome_swift.framework"; sourceTree = "<group>"; };
 		FAAE9D60201B564C00E11710 /* FontAwesome_swift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesome_swift.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/FontAwesome.swift/FontAwesome_swift.framework"; sourceTree = "<group>"; };
 		FAB0BF11216CEBBF0018EF05 /* Model 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4.xcdatamodel"; sourceTree = "<group>"; };
+		FADB6CFD216E27EF000A52A0 /* AjusteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AjusteViewController.swift; sourceTree = "<group>"; };
+		FADB6CFF216E48F8000A52A0 /* WareHouseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WareHouseTableViewCell.swift; sourceTree = "<group>"; };
 		FADDF6712010D6C800D046C8 /* ArticuloController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticuloController.swift; sourceTree = "<group>"; };
 		FADDF67B2010F78300D046C8 /* BarcodeScanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BarcodeScanner.framework; path = "../../Library/Developer/Xcode/DerivedData/Recepcion_Mercancia-bnulmgearkldtobsbxjybxwjiemy/Build/Products/Debug-iphoneos/BarcodeScanner/BarcodeScanner.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,6 +195,8 @@
 				FA8D17C221628F6D00CCA3A4 /* MenuViewController.swift */,
 				FA8D17C42162B7D900CCA3A4 /* ArticleMovimientoViewController.swift */,
 				FA8D17CA2162E54B00CCA3A4 /* TotalizarMovViewController.swift */,
+				FADB6CFD216E27EF000A52A0 /* AjusteViewController.swift */,
+				FADB6CFF216E48F8000A52A0 /* WareHouseTableViewCell.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -350,6 +356,8 @@
 				FA78679820079CBA00BB4D12 /* AppDelegate.swift in Sources */,
 				FA020245207FA605001E10A1 /* Model.xcdatamodeld in Sources */,
 				FA3F7723200D322400A118F7 /* EscogerProveedor.swift in Sources */,
+				FADB6D00216E48F8000A52A0 /* WareHouseTableViewCell.swift in Sources */,
+				FADB6CFE216E27EF000A52A0 /* AjusteViewController.swift in Sources */,
 				FA020254207FBCCF001E10A1 /* ProviderCore+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
